@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "product": "SXL Localhost",
+  "component": "cloudflared",
+  "version": "2026.10.4",
+  "verifiedAt": "2026-10-27",
+  "sourceRelease": "https://github.com/cloudflare/cloudflared/releases/tag/2026.10.4",
+  "quickTunnelDocumentation": "https://developers.cloudflare.com/tunnel/get-started/quick-tunnels/",
+  "emailAllowListChangelog": "https://developers.cloudflare.com/changelog/post/2026-10-02-protected-quick-tunnels/",
+  "assets": [
+    {
+      "platform": "win32-x64",
+      "filename": "cloudflared-windows-amd64.exe",
+      "installedFilename": "cloudflared.exe",
+      "url": "https://github.com/cloudflare/cloudflared/releases/download/2026.10.4/cloudflared-windows-amd64.exe",
+      "sha256": "411b16d40c8d872243efeb52c550053d00af0a8a97fbb32e730fb8aba429eaa8",
+      "sha256Source": "GitHub release asset metadata"
+    },
+    {
+      "platform": "darwin-x64",
+      "filename": "cloudflared-darwin-amd64.tgz",
+      "installedFilename": "cloudflared",
+      "url": "https://github.com/cloudflare/cloudflared/releases/download/2026.10.4/cloudflared-darwin-amd64.tgz",
+      "sha256": "f11fbef4207d715892331917dafd437f032cf4b7137ed64dea3008338c1c613d",
+      "sha256Source": "GitHub release asset metadata"
+    },
+    {
+      "platform": "darwin-arm64",
+      "filename": "cloudflared-darwin-arm64.tgz",
+      "installedFilename": "cloudflared",
+      "url": "https://github.com/cloudflare/cloudflared/releases/download/2026.10.4/cloudflared-darwin-arm64.tgz",
+      "sha256": "68b6bc4080ac1330234db2a9002d07f98b000537a1bd531a687b660d4160fa7f",
+      "sha256Source": "GitHub release asset metadata"
+    }
+  ],
+  "checksumDiscrepancy": {
+    "status": "observed",
+    "releaseBody": {
+      "darwin-amd64": "fdec0f9a1c726f4c10283fc0cd70e602d510c72887b737270433c81a08c883a9",
+      "darwin-arm64": "49e7963072b2ca83fb44c09f4d4a7cda52d390c0c9c6f55bac83454a5bc43910"
+    },
+    "assetMetadata": {
+      "darwin-amd64": "f11fbef4207d715892331917dafd437f032cf4b7137ed64dea3008338c1c613d",
+      "darwin-arm64": "68b6bc4080ac1330234db2a9002d07f98b000537a1bd531a687b660d4160fa7f"
+    },
+    "handling": "Installer uses the SHA-256 digest published on each individual GitHub asset and fails closed if the downloaded archive differs. Assets were not downloaded and independently re-hashed in this build environment."
+  },
+  "security": {
+    "httpsOnly": true,
+    "allowedHosts": [
+      "github.com",
+      "objects.githubusercontent.com",
+      "release-assets.githubusercontent.com"
+    ],
+    "maxDownloadBytes": 104857600,
+    "maxRedirects": 5,
+    "stageBeforeInstall": true,
+    "managedBinaryDigestVerifiedBeforeSelection": true,
+    "untrustedExistingBinaryQuarantined": true,
+    "quickTunnelLoopbackTargetOnly": true,
+    "isolatedTemporaryConfigHome": true
+  },
+  "platformNotes": {
+    "automaticDownload": [
+      "win32-x64",
+      "darwin-x64",
+      "darwin-arm64"
+    ],
+    "manualBinaryRequired": [
+      "linux and other unpinned platform/architectures"
+    ]
+  }
+}

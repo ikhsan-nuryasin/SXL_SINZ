@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "product": "SXL Localhost",
+  "version": "0.14.3",
+  "verifiedAt": "2026-10-27",
+  "existingDatabaseManager": "MariaDB/MySQL legacy manager preserved",
+  "engines": [
+    {
+      "id": "mariadb",
+      "status": "existing manager preserved and MariaDB 13.0.2 version manager retained",
+      "dataIsolation": "per database runtime version",
+      "features": [
+        "select version",
+        "install version archive",
+        "start",
+        "stop",
+        "status",
+        "port",
+        "logs",
+        "SQL query",
+        "database/user management",
+        "SQL backup/restore"
+      ]
+    },
+    {
+      "id": "postgresql",
+      "status": "source integration; native runtime not tested in this environment",
+      "minimumMajor": 14,
+      "defaultHost": "127.0.0.1",
+      "defaultPort": 5433,
+      "managedPaths": {
+        "data": "data/database-engines/postgresql/default",
+        "log": "logs/database-engines/postgresql.log",
+        "temp": "tmp/database-engines/postgresql",
+        "backup": "backups/database-engines/postgresql"
+      },
+      "features": [
+        "configure user-selected binary",
+        "initialize a new SXL-owned cluster",
+        "start",
+        "normal stop",
+        "status",
+        "log",
+        "SQL query",
+        "list/create database",
+        "show credentials on request",
+        "pg_dump custom-format backup"
+      ],
+      "notImplemented": [
+        "UI restore",
+        "application-role wizard",
+        "major-version migration"
+      ]
+    },
+    {
+      "id": "sqlite",
+      "status": "source integration; native CLI not tested in this environment",
+      "managedPaths": {
+        "data": "data/database-engines/sqlite",
+        "backup": "backups/database-engines/sqlite"
+      },
+      "features": [
+        "configure trusted sqlite3 CLI",
+        "create file database",
+        "SQL query",
+        "consistent backup with .backup"
+      ],
+      "notImplemented": [
+        "UI restore"
+      ]
+    },
+    {
+      "id": "mongodb",
+      "status": "not implemented as SXL runtime manager"
+    },
+    {
+      "id": "redis",
+      "status": "not implemented as SXL runtime manager"
+    },
+    {
+      "id": "mysql-native",
+      "status": "not implemented as a separate SXL runtime manager"
+    }
+  ],
+  "securityBoundaries": [
+    "loopback default for PostgreSQL",
+    "unknown/non-empty external data directories are not adopted",
+    "no automatic major upgrade/downgrade",
+    "port conflicts do not kill other processes",
+    "partial PostgreSQL initialization is preserved in recovery",
+    "SQLite files are confined to SXL-managed data path"
+  ]
+}

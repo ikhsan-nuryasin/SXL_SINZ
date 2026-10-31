@@ -1,0 +1,86 @@
+name: Build SXL Localhost desktop installers
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  prepare-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Resolve and lock npm dependencies once for this release
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sxl-npm-lockfile
+          path: package-lock.json
+          if-no-files-found: error
+
+  windows:
+    needs: prepare-dependencies
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v4
+        with:
+          name: sxl-npm-lockfile
+          path: .
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - run: npm run build:win
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SXL-Windows-Installer
+          path: dist/*.exe
+          if-no-files-found: error
+
+  macos:
+    needs: prepare-dependencies
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v4
+        with:
+          name: sxl-npm-lockfile
+          path: .
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+      - run: npm run build:mac:universal
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SXL-macOS-Installer
+          path: |
+            dist/*.dmg
+            dist/*.pkg
+            dist/*.zip
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [windows, macos]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: SXL-*-Installer
+          path: release-assets
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: release-assets/**
+          generate_release_notes: true

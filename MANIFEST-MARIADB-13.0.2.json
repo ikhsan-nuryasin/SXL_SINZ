@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "product": "MariaDB Server",
+  "version": "13.0.2",
+  "releaseDate": "2026-09-15",
+  "releaseChannel": "stable rolling (not LTS)",
+  "platform": "Windows x64",
+  "verificationDate": "2026-10-27",
+  "sourceArchive": {
+    "fileName": "mariadb-13.0.2-winx64.zip",
+    "sizeBytes": 104263573,
+    "sha256": "ba9cefd6674b3f2f7bc67334c05305dc7c919643d76836e10767e70db0b5fb74",
+    "officialChecksumUrl": "https://archive.mariadb.org/mariadb-13.0.2/winx64-packages/sha256sums.txt",
+    "checksumMatchesOfficialList": true
+  },
+  "archiveAudit": {
+    "entries": 756,
+    "files": 650,
+    "directories": 106,
+    "expandedBytes": 338137372,
+    "crcError": null,
+    "unsafePathCount": 0,
+    "duplicateCasefoldPathCount": 0,
+    "symlinkCount": 0,
+    "unsafeExamples": [],
+    "duplicateExamples": [],
+    "configurationIniOrCnfFiles": 0,
+    "configurationExamples": [],
+    "systemDatabaseFileCandidates": [],
+    "originalArchiveUnmodified": true,
+    "developerHeaderDirectoriesWithWordsDataSysPerformanceSchema": [
+      "mariadb-13.0.2-winx64/include/mysql/server/private/data/",
+      "mariadb-13.0.2-winx64/include/mysql/server/private/data/mysql/",
+      "mariadb-13.0.2-winx64/include/mysql/server/private/data/performance_schema/",
+      "mariadb-13.0.2-winx64/include/mysql/server/private/data/sys/"
+    ]
+  },
+  "versionMetadata": {
+    "verifiedFrom": "include/mysql/mariadb_version.h (static header metadata, not a binary --version invocation)",
+    "defines": {
+      "MARIADB_CLIENT_VERSION_STR": "\"13.0.2\"",
+      "MYSQL_SERVER_VERSION": "\"13.0.2-MariaDB\"",
+      "MARIADB_VERSION_ID": "130002"
+    }
+  },
+  "binaryArchitecture": {
+    "method": "PE file/header inspection with file and objdump",
+    "executables": [
+      "mariadbd.exe",
+      "mysqld.exe",
+      "mariadb-install-db.exe",
+      "mariadb.exe",
+      "mysql.exe",
+      "mariadb-admin.exe",
+      "mysqladmin.exe",
+      "mariadb-dump.exe",
+      "mysqldump.exe"
+    ],
+    "result": "PE32+ Windows x86-64 for checked core executables; binaries were not executed on the Linux audit host"
+  },
+  "importantFiles": [
+    {
+      "path": "bin/mariadbd.exe",
+      "sizeBytes": 13312,
+      "sha256": "5c3e8cfe39eb2bec4cb3fe7944d0a184aab49da86c58c898a62cce49c2ee2626"
+    },
+    {
+      "path": "bin/server.dll",
+      "sizeBytes": 22006784,
+      "sha256": "a2730c98103f6232e9cac89588c8e3bb2e4a65fdb8d5a3f36579d06c1adeef51"
+    },
+    {
+      "path": "bin/mariadb-install-db.exe",
+      "sizeBytes": 3272704,
+      "sha256": "11c7689f4ddbb07a0e27671994fa1ec73e953c2db31a32e2d6ed6a0c3ccac4ba"
+    },
+    {
+      "path": "bin/mariadb.exe",
+      "sizeBytes": 4823552,
+      "sha256": "658ab0ff5c16f2237259ae9d27c4e5ff9b8f7db7755d4b2361ec16cb9db41951"
+    },
+    {
+      "path": "bin/mariadb-admin.exe",
+      "sizeBytes": 1012736,
+      "sha256": "d4ed8cd1251880f1c5350a89907edea07e0eb97ebba32593117209b16781ac7c"
+    },
+    {
+      "path": "bin/mariadb-dump.exe",
+      "sizeBytes": 4836352,
+      "sha256": "0bf21be9c1ed6317fa6e574102f00db047b0bc6575828e005106b1183571f037"
+    },
+    {
+      "path": "include/mysql/mariadb_version.h",
+      "sizeBytes": 1258,
+      "sha256": "2ad1246468dc6d79a28a655734b52bd07399676c6d3bec6262f7b5d3acdacd42"
+    },
+    {
+      "path": "COPYING",
+      "sizeBytes": 17987,
+      "sha256": "240a15a1d0f34d3abca462cdb7e5fb89470967563f16b0e71169e51c1e74cf2b"
+    },
+    {
+      "path": "THIRDPARTY",
+      "sizeBytes": 87169,
+      "sha256": "0bde2eb5ed47dced6217402fc52b647ff58d5b5fef6b202d88f7787c072c621d"
+    },
+    {
+      "path": "CREDITS",
+      "sizeBytes": 2531,
+      "sha256": "0309cf21602043a8949ec2e9a61298d6a76a7a684093f9aabb2d4879b4625ab5"
+    },
+    {
+      "path": "README.md",
+      "sizeBytes": 2737,
+      "sha256": "a1494483b0ced1244bc1fc82ef15f2f0221e210288f97d3ab93a62e0fd8763a3"
+    },
+    {
+      "path": "lib/libmariadb.dll",
+      "sizeBytes": 334848,
+      "sha256": "ce3ea9bfbe14ada18eb574159d64906f76cb599473a61525e7627154081d943c"
+    },
+    {
+      "path": "bin/libcurl.dll",
+      "sizeBytes": 643072,
+      "sha256": "28b0127c5377981ab71b4fc6ee7c1e925ac95d2304e6fac2ccc36b0e90d41719"
+    },
+    {
+      "path": "bin/zlib1.dll",
+      "sizeBytes": 90112,
+      "sha256": "d97b0c46d8c48382b608fb35a0d982365a199a43391ab10bb6a0389387e801a4"
+    },
+    {
+      "path": "bin/vcruntime140.dll",
+      "sizeBytes": 124544,
+      "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066"
+    },
+    {
+      "path": "bin/vcruntime140_1.dll",
+      "sizeBytes": 49792,
+      "sha256": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f"
+    },
+    {
+      "path": "bin/msvcp140.dll",
+      "sizeBytes": 557728,
+      "sha256": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9"
+    }
+  ],
+  "runtimeDllInventory": {
+    "binDllFiles": [
+      "bin/libcurl.dll",
+      "bin/zlib1.dll",
+      "bin/server.dll",
+      "bin/concrt140.dll",
+      "bin/msvcp140.dll",
+      "bin/msvcp140_1.dll",
+      "bin/msvcp140_2.dll",
+      "bin/msvcp140_atomic_wait.dll",
+      "bin/msvcp140_codecvt_ids.dll",
+      "bin/vcruntime140.dll",
+      "bin/vcruntime140_1.dll"
+    ],
+    "containsVCRuntimeDlls": true,
+    "pluginFileCount": 31,
+    "pluginFolder": "lib/plugin"
+  },
+  "licenseAndAttribution": [
+    "COPYING",
+    "THIRDPARTY",
+    "CREDITS",
+    "README.md"
+  ],
+  "notBundledBySxlInstaller": [
+    "*.pdb",
+    "*.lib",
+    "*.a",
+    "*.la",
+    "C/C++ headers and source",
+    "object/import libraries"
+  ],
+  "safety": {
+    "archiveHasNoUnsafePaths": true,
+    "archiveHasNoDuplicateCaseInsensitivePaths": true,
+    "archiveHasNoSymlinks": true,
+    "defaultBind": "127.0.0.1",
+    "defaultPort": "3308 if free; otherwise first available between 3308 and 3408",
+    "remoteAccessEnabledByInstaller": false,
+    "noConfigOrDatabaseInstanceBundled": true,
+    "noDefaultDatabaseCredentialsOrInstanceConfigFound": true
+  },
+  "runtimeExecutionStatus": "NOT TESTED: Windows executables and PowerShell installer were not executed; startup, connection, shutdown, backup/restore, phpMyAdmin compatibility, and Windows build remain to be validated on Windows x64"
+}

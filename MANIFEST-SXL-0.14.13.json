@@ -1,0 +1,64 @@
+{
+  "name": "SXL Localhost",
+  "version": "0.14.13",
+  "releaseType": "portable-source-bundle",
+  "platform": "Windows x64",
+  "purpose": "Fix MariaDB bootstrap ACL PrivilegeNotHeldException by replacing Set-Acl tree operations with icacls DACL-only operations.",
+  "tests": {
+    "command": "npm test",
+    "passed": 117,
+    "failed": 0,
+    "nativeWindowsStartupVerified": false
+  },
+  "mariadbArchive": {
+    "path": "runtime/packages/mariadb-13.0.2-winx64.zip",
+    "sizeBytes": 104263573,
+    "sha256": "ba9cefd6674b3f2f7bc67334c05305dc7c919643d76836e10767e70db0b5fb74",
+    "note": "SHA-256 is pinned and matches the source archive provided for this project; this is not a publisher signature."
+  },
+  "files": {
+    "package.json": {
+      "sizeBytes": 3409,
+      "sha256": "c933537ce605875d2c0846a5b9c29138168a50908163bf33accadfc178d34adc"
+    },
+    "server.js": {
+      "sizeBytes": 74378,
+      "sha256": "6f8a96babf172619fd7d1be1e38174d2ab876ee2930b648cad6d790fd49d6e92"
+    },
+    "database.js": {
+      "sizeBytes": 75981,
+      "sha256": "725dfd8d7174b85ab57adbf4f0f5d7eba77f374bfb31db8b0ffc7ffb013f3958"
+    },
+    "lib/secure-settings.js": {
+      "sizeBytes": 8041,
+      "sha256": "00538c8331d46c45fc3246d3eb9d1c17d499db62a65f323bca8744047694e7da"
+    },
+    "Install-SXL-MariaDB-Version.ps1": {
+      "sizeBytes": 19352,
+      "sha256": "17bca2b37223b0da3467f8913bbfc263b7b55c41da391f1ebf3e6d7c7a60008a"
+    },
+    "lib/first-run-database.js": {
+      "sizeBytes": 4276,
+      "sha256": "5bc7034855c3488f47bc6ae916283578e144dadc2e0b049391cfb05fb1b81f6f"
+    },
+    "tests/secure-settings.test.js": {
+      "sizeBytes": 3223,
+      "sha256": "3721f35d60504c5f35802a4908d18436af085260ca23127bb1a4980f8ef70e61"
+    },
+    "tests/mariadb-installer.test.js": {
+      "sizeBytes": 7166,
+      "sha256": "0abac7c9eeeb6496b1917159fe8e2219beba703291c52b398f2db66e0550a167"
+    },
+    "tests/desktop.test.js": {
+      "sizeBytes": 12779,
+      "sha256": "a9e4bff20382a7e369330e2b8a9cf23a6ee12963e924764b79f55d911aca74d2"
+    },
+    "runtime/packages/mariadb-13.0.2-winx64.zip": {
+      "sizeBytes": 104263573,
+      "sha256": "ba9cefd6674b3f2f7bc67334c05305dc7c919643d76836e10767e70db0b5fb74"
+    }
+  },
+  "release": "0.14.13",
+  "date": "2026-10-28",
+  "summary": "Runs MariaDB installer from verified source staging outside the AppData payload to address initializer launch Access Denied; keeps DACL-only ACL and authenticated startup verification."
+}

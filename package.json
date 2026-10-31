@@ -1,0 +1,145 @@
+{
+  "name": "sxl-localhost-website-sharing",
+  "productName": "SINZ",
+  "version": "0.14.13",
+  "private": true,
+  "description": "Portable local developer workspace with MariaDB 13.0.2 first-run bootstrap and Windows-safe initializer staging.",
+  "main": "electron/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "app": "electron .",
+    "server": "node server.js",
+    "test": "node --test",
+    "build:win": "electron-builder --win --x64",
+    "build:mac": "electron-builder --mac",
+    "build:mac:intel": "electron-builder --mac --x64",
+    "build:mac:arm": "electron-builder --mac --arm64",
+    "build:mac:universal": "electron-builder --mac --universal"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "devDependencies": {
+    "electron": "45.0.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "com.youtsin.sxl-localhost",
+    "productName": "SINZ",
+    "asar": true,
+    "files": [
+      "server.js",
+      "database.js",
+      "services.js",
+      "public/**/*",
+      "electron/**/*",
+      "lib/**/*",
+      "runtime/**/*",
+      "assets/icon.ico",
+      "package.json",
+      "README.md",
+      "CHANGELOG.md",
+      "SPECIFIKASI.md",
+      "PANDUAN-RUNTIME-MANUAL.md",
+      "!runtime/packages/mariadb-13.0.2-winx64.zip"
+    ],
+    "extraResources": [
+      {
+        "from": "Install-SXL-MariaDB.ps1",
+        "to": "Install-SXL-MariaDB.ps1"
+      },
+      {
+        "from": "Install-SXL-MariaDB-Version.ps1",
+        "to": "Install-SXL-MariaDB-Version.ps1"
+      },
+      {
+        "from": "runtime/packages",
+        "to": "runtime-packages",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "artifactName": "SXL-Localhost-${version}-${arch}.${ext}",
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": false,
+      "perMachine": false,
+      "runAfterFinish": true,
+      "include": "assets/installer.nsh",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "SINZ",
+      "uninstallDisplayName": "SINZ",
+      "deleteAppDataOnUninstall": false
+    },
+    "mac": {
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.developer-tools",
+      "target": [
+        "dmg",
+        "pkg",
+        "zip"
+      ],
+      "identity": null,
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false
+    },
+    "dmg": {
+      "sign": false,
+      "contents": [
+        {
+          "x": 130,
+          "y": 220,
+          "type": "file"
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 540,
+        "height": 380
+      }
+    },
+    "pkg": {
+      "installLocation": "/Applications",
+      "allowAnywhere": false,
+      "allowCurrentUserHome": false,
+      "allowRootDirectory": true
+    },
+    "portable": {
+      "artifactName": "SXL-Localhost-${version}-portable.${ext}"
+    }
+  },
+  "dependencies": {
+    "undici": "7.30.1"
+  }
+}

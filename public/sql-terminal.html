@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="sxl-csrf" content="__SXL_CSRF_TOKEN__">
+  <meta name="color-scheme" content="light">
+  <title>Terminal SQL · SINZ</title>
+  <style>
+    :root{font:14px/1.5 "Segoe UI",Arial,sans-serif;color:#182433;background:#f5f7fa;--accent:#1769d2;--line:#dfe5ec;--muted:#667487}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh}.topbar{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:17px 26px;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 3px 14px #20243a08}
+    .brand{display:flex;align-items:center;gap:12px}.brand-mark{display:block;width:40px;height:40px;border-radius:11px}.brand h1{font-size:17px;line-height:1.2;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:11px}
+    .db-state{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}.dot{width:9px;height:9px;border-radius:50%;background:#c9ceda}.dot.good{background:#2bad82;box-shadow:0 0 0 4px #2bad8218}.dot.warn{background:#e2a53c}
+    main{max-width:1180px;margin:26px auto;padding:0 22px 40px}.intro{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:16px}.intro h2{margin:0;font-size:23px;letter-spacing:-.03em}.intro p{margin:5px 0 0;color:var(--muted);font-size:12px}
+    .workspace{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 30px #22264308;overflow:hidden}.toolbar{display:flex;align-items:end;gap:12px;flex-wrap:wrap;padding:16px 18px;border-bottom:1px solid var(--line);background:#fbfcff}
+    label{display:grid;gap:5px;color:#505871;font-size:11px;font-weight:700}.select,input{min-height:38px;border:1px solid #dfe3ed;border-radius:9px;background:#fff;color:#252b43;padding:8px 10px;font:inherit}.select:focus,input:focus,textarea:focus{outline:2px solid #5d5ad833;border-color:var(--accent)}
+    .db-field{min-width:190px;flex:1}.query-label{padding:16px 18px 8px}textarea{display:block;width:calc(100% - 36px);min-height:260px;resize:vertical;margin:0 18px;border:1px solid #303754;border-radius:11px;background:#20243a;color:#ecedff;padding:16px;font:13px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2}
+    .actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:13px 18px 17px}.hint{color:var(--muted);font-size:11px}.buttons{display:flex;gap:8px}.btn{min-height:36px;border:1px solid transparent;border-radius:9px;padding:8px 13px;background:var(--accent);color:white;font-weight:700;font:inherit;cursor:pointer}.btn.secondary{border-color:var(--line);background:#fff;color:#525b73}.btn:disabled{opacity:.55;cursor:wait}
+    .feedback{margin:0 18px 16px;padding:10px 12px;border:1px solid var(--line);border-radius:9px;background:#f8f9fc;color:#515a73;white-space:pre-wrap;overflow-wrap:anywhere}.feedback.error{border-color:#f1d0d5;background:#fff2f3;color:#aa3047}.feedback[hidden]{display:none}
+    .result-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 18px;border-top:1px solid var(--line);font-size:12px;font-weight:750}.result-meta{font-size:11px;color:var(--muted);font-weight:500}.result-wrap{overflow:auto;max-height:360px;margin:0 18px 18px;border:1px solid var(--line);border-radius:9px}.result-wrap[hidden]{display:none}table{width:100%;border-collapse:collapse;font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace}th,td{text-align:left;vertical-align:top;padding:9px 11px;border-bottom:1px solid #edf0f5;white-space:pre-wrap;overflow-wrap:anywhere;max-width:420px}th{position:sticky;top:0;background:#f5f6fb;color:#525b73}td{color:#38415c}
+    .translation{padding:0 18px 16px}.translation summary{color:#6561cd;font-size:11px;font-weight:700;cursor:pointer}.translation code{display:block;margin-top:8px;padding:10px;border-radius:8px;background:#f5f6fb;white-space:pre-wrap;overflow-wrap:anywhere}
+    .examples{display:flex;align-items:end;gap:8px;flex-wrap:wrap;padding:12px 18px;border-top:1px solid var(--line);background:#fff}.examples label{flex:1;min-width:220px}.examples .select{width:100%}.batch-results{display:grid;gap:12px;padding:0 18px 18px}.batch-results[hidden]{display:none}.batch-result{border:1px solid var(--line);border-radius:10px;overflow:hidden}.batch-result-head{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;background:#f7f8fb;font-weight:700;font-size:12px}.batch-result pre{margin:0;padding:10px 12px;background:#20243a;color:#ecedff;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.6 ui-monospace,Consolas,monospace}.batch-result p{padding:0 12px;color:var(--muted);font-size:12px}.batch-result .result-wrap{margin:0 12px 12px}.reference{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 18px}.reference summary{font-weight:750;cursor:pointer}.reference h3{margin:16px 0 6px;font-size:14px}.reference p,.reference li{color:#526075;font-size:12px}.reference pre{overflow:auto;padding:12px;border-radius:8px;background:#20243a;color:#ecedff;font:12px/1.6 ui-monospace,Consolas,monospace}.glossary-search{width:min(100%,360px);margin:8px 0}.glossary-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px}#glossaryTable{font-family:inherit}#glossaryTable td:first-child{font-family:ui-monospace,Consolas,monospace;font-weight:700;white-space:nowrap}
+    @media(max-width:640px){.topbar{padding:13px 16px}.db-state{font-size:10px}main{padding:16px 12px 28px}.intro{align-items:flex-start;flex-direction:column}.intro h2{font-size:20px}textarea{min-height:210px}.toolbar{align-items:stretch}.db-field{min-width:100%}.actions{align-items:flex-start;flex-direction:column}.buttons{width:100%}.buttons .btn{flex:1}.examples{align-items:stretch;flex-direction:column}.examples label{min-width:100%}}
+  </style>
+  <script src="/sql-terminal.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><img class="brand-mark" src="/sinz-mark.svg" alt=""><div><h1>SINZ</h1><p>Terminal SQL · hanya database lokal</p></div></div>
+    <div class="db-state" role="status"><span class="dot" id="databaseDot"></span><span id="databaseStatus">Memeriksa database…</span></div>
+  </header>
+  <main>
+    <section class="intro"><div><h2>Jalankan perintah database</h2><p>Tulis perintah dalam bahasa Indonesia atau SQL standar. Gunakan Ctrl+Enter untuk menjalankan.</p></div></section>
+    <section class="workspace" aria-label="Editor SQL">
+      <div class="toolbar">
+        <label>Bahasa perintah
+          <select class="select" id="language">
+            <option value="id" selected>Bahasa Indonesia</option>
+            <option value="native">SQL standar</option>
+          </select>
+        </label>
+        <label class="db-field">Database · opsional
+          <input id="databaseName" maxlength="64" autocomplete="off" spellcheck="false" placeholder="contoh: aplikasi_demo">
+        </label>
+      </div>
+      <div class="examples">
+        <label for="sqlExample">Pilih contoh kode
+          <select class="select" id="sqlExample">
+            <option value="">Pilih materi untuk disisipkan…</option>
+            <option value="createDatabase">Membuat database dan tabel</option>
+            <option value="insertSelect">Menambah dan melihat data</option>
+            <option value="filterSort">Filter, urutkan, dan batasi</option>
+            <option value="updateDelete">Mengubah dan menghapus data</option>
+            <option value="join">Menggabungkan tabel (JOIN)</option>
+            <option value="aggregate">Menghitung dan mengelompokkan data</option>
+            <option value="transaction">Transaksi sederhana</option>
+          </select>
+        </label>
+        <button class="btn secondary" id="insertSqlExample" type="button">Sisipkan contoh</button>
+      </div>
+      <label class="query-label" for="sqlInput">Perintah SQL</label>
+      <textarea id="sqlInput" spellcheck="false" aria-describedby="sqlHint">TAMPILKAN DATABASES;</textarea>
+      <div class="actions">
+        <span class="hint" id="sqlHint">Bisa menjalankan beberapa perintah sekaligus, pisahkan dengan titik koma (;). Maksimal 50 perintah; hasil tiap SELECT dibatasi 500 baris. Ctrl+Enter untuk menjalankan.</span>
+        <div class="buttons"><button class="btn secondary" id="clearSql" type="button">Bersihkan</button><button class="btn" id="runSql" type="button">Jalankan SQL</button></div>
+      </div>
+      <div class="feedback" id="sqlFeedback" role="status" aria-live="polite" hidden></div>
+      <div class="result-head"><span>Hasil</span><span class="result-meta" id="resultMeta">Belum ada query</span></div>
+      <div class="result-wrap" id="resultWrap" hidden><table><thead id="resultHead"></thead><tbody id="resultBody"></tbody></table></div>
+      <div class="batch-results" id="batchResults" hidden></div>
+      <details class="translation" id="translationDetails" hidden><summary>Lihat SQL yang diterjemahkan</summary><code id="translatedSql"></code></details>
+    </section>
+    <details class="reference">
+      <summary>Materi singkat MariaDB</summary>
+      <h3>Dasar SQL</h3>
+      <p>Perintah di editor dijalankan berurutan pada satu koneksi. Jika ada perintah gagal, perintah sebelumnya tidak otomatis dibatalkan. Gunakan titik koma untuk memisahkan perintah. Untuk operasi yang mengubah atau menghapus data, periksa klausa <code>WHERE</code> terlebih dahulu.</p>
+      <h3>Tipe data umum</h3>
+      <ul>
+        <li><code>INT</code>: bilangan bulat; <code>BIGINT</code>: bilangan bulat berukuran besar.</li>
+        <li><code>VARCHAR(255)</code>: teks dengan panjang maksimum; <code>TEXT</code>: teks panjang.</li>
+        <li><code>DECIMAL(10,2)</code>: angka desimal yang presisi untuk nilai uang.</li>
+        <li><code>DATE</code>: tanggal; <code>DATETIME</code>: tanggal dan waktu.</li>
+        <li><code>BOOLEAN</code>: nilai benar/salah (MariaDB menyimpannya sebagai angka kecil).</li>
+      </ul>
+      <h3>Contoh membuat tabel relasi</h3>
+      <pre>BUAT TABEL pelanggan (
+  id INT,
+  nama VARCHAR(100) BUKAN KOSONG,
+  dibuat_pada DATETIME
+);</pre>
+      <p>Untuk primary key dan auto-increment, gunakan sintaks SQL standar di mode <strong>SQL standar</strong>, misalnya <code>id INT AUTO_INCREMENT PRIMARY KEY</code>.</p>
+    </details>
+    <details class="reference">
+      <summary>Kamus perintah dan fungsi MariaDB</summary>
+      <label for="glossarySearch">Cari kata atau fungsi
+        <input class="glossary-search" id="glossarySearch" type="search" placeholder="Contoh: WHERE, COUNT, indeks">
+      </label>
+      <div class="glossary-wrap">
+        <table id="glossaryTable">
+          <thead><tr><th>Perintah / istilah</th><th>Arti dan kegunaan</th></tr></thead>
+          <tbody id="glossaryRows">
+            <tr><td>SELECT / PILIH</td><td>Membaca kolom atau data dari tabel.</td></tr>
+            <tr><td>FROM / DARI</td><td>Menentukan tabel sumber data.</td></tr>
+            <tr><td>WHERE / DIMANA</td><td>Menyaring baris sesuai kondisi.</td></tr>
+            <tr><td>INSERT INTO / TAMBAHKAN KE</td><td>Menambahkan baris baru ke tabel.</td></tr>
+            <tr><td>UPDATE / UBAH</td><td>Mengubah data; gunakan WHERE agar hanya baris yang dituju berubah.</td></tr>
+            <tr><td>DELETE FROM / HAPUS DARI</td><td>Menghapus baris; tanpa WHERE semua baris di tabel dapat terhapus.</td></tr>
+            <tr><td>CREATE TABLE / BUAT TABEL</td><td>Membuat tabel dan menentukan kolom serta tipe data.</td></tr>
+            <tr><td>ALTER TABLE / UBAH TABEL</td><td>Mengubah struktur tabel, misalnya menambah kolom.</td></tr>
+            <tr><td>DROP TABLE / HAPUS TABEL</td><td>Menghapus tabel beserta isinya.</td></tr>
+            <tr><td>JOIN / GABUNGKAN</td><td>Menggabungkan baris dari tabel terkait menggunakan kondisi ON.</td></tr>
+            <tr><td>ON / PADA</td><td>Menentukan kondisi pencocokan pada JOIN.</td></tr>
+            <tr><td>ORDER BY / URUTKAN BERDASARKAN</td><td>Mengurutkan hasil; ASC naik dan DESC turun.</td></tr>
+            <tr><td>GROUP BY / KELOMPOKKAN</td><td>Mengelompokkan baris, umumnya bersama fungsi agregat.</td></tr>
+            <tr><td>LIMIT / BATASI</td><td>Membatasi jumlah baris hasil yang dikembalikan.</td></tr>
+            <tr><td>COUNT()</td><td>Menghitung jumlah baris atau nilai yang tidak NULL.</td></tr>
+            <tr><td>SUM()</td><td>Menjumlahkan nilai numerik.</td></tr>
+            <tr><td>AVG()</td><td>Menghitung rata-rata nilai numerik.</td></tr>
+            <tr><td>MIN() / MAX()</td><td>Mengambil nilai terkecil atau terbesar.</td></tr>
+            <tr><td>NOW() / CURDATE()</td><td>Mengambil waktu saat ini atau tanggal hari ini.</td></tr>
+            <tr><td>PRIMARY KEY</td><td>Penanda unik untuk setiap baris tabel.</td></tr>
+            <tr><td>FOREIGN KEY</td><td>Relasi yang menjaga keterkaitan antar tabel.</td></tr>
+            <tr><td>INDEX</td><td>Membantu mempercepat pencarian, dengan biaya ruang penyimpanan dan penulisan.</td></tr>
+            <tr><td>COMMIT / SIMPAN</td><td>Menyimpan perubahan dalam transaksi.</td></tr>
+            <tr><td>ROLLBACK / BATALKAN</td><td>Membatalkan perubahan transaksi yang belum di-COMMIT.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </details>
+  </main>
+</body>
+</html>

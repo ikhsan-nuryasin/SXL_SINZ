@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "product": "SXL Localhost",
+  "release": "0.14.10",
+  "distributionType": "source-and-runtime-release-bundle",
+  "nativeWindowsInstallerBuilt": false,
+  "nativeWindowsRuntimeTested": false,
+  "mariadb": {
+    "version": "13.0.2",
+    "platform": "Windows x64",
+    "archivePath": "runtime/packages/mariadb-13.0.2-winx64.zip",
+    "archiveBytes": 104263573,
+    "sha256": "ba9cefd6674b3f2f7bc67334c05305dc7c919643d76836e10767e70db0b5fb74",
+    "verification": "matches SHA-256 pinned in existing source manifest and installer"
+  },
+  "criticalFiles": [
+    {
+      "path": "package.json",
+      "bytes": 3506,
+      "sha256": "4949a0bdb728f95e3925ea117681acbdcffe06e836cecbeec217965eb6137353"
+    },
+    {
+      "path": "database.js",
+      "bytes": 75981,
+      "sha256": "725dfd8d7174b85ab57adbf4f0f5d7eba77f374bfb31db8b0ffc7ffb013f3958"
+    },
+    {
+      "path": "electron/main.js",
+      "bytes": 7343,
+      "sha256": "c0dde743ecf2ff62acd5e076814f6f4fd1583255e272a11516d5e56ed6110a1f"
+    },
+    {
+      "path": "Install-SXL-MariaDB-Version.ps1",
+      "bytes": 20003,
+      "sha256": "dec4489c066737fbec2a83891ed0953ab1fa66d72e99706261d51f1268353498"
+    },
+    {
+      "path": "lib/first-run-database.js",
+      "bytes": 4209,
+      "sha256": "b2e90ea77a54a41090f6a6096f168b302e0a0641a8fbf990103b8eeaea9217de"
+    },
+    {
+      "path": "lib/secure-settings.js",
+      "bytes": 8079,
+      "sha256": "857faeb8a8e479eb7deba24c812134304a24f48adaf93030c73e3ba2c84c4ecf"
+    },
+    {
+      "path": "tests/first-run-database.test.js",
+      "bytes": 4255,
+      "sha256": "cd1ac9579ac5b29e05705981e320106216e8da9fa0b789a2a6056ffcd4519463"
+    },
+    {
+      "path": "tests/mariadb-installer.test.js",
+      "bytes": 6736,
+      "sha256": "1a0df11ad25a7bc8c3f1a707607e5c6b8f8fff57e9d8ead46a181fca4da99032"
+    }
+  ],
+  "validation": {
+    "nodeSyntaxChecks": "passed for electron/main.js, database.js, lib/first-run-database.js, lib/secure-settings.js",
+    "nodeTests": "113 passed; 0 failed; 0 skipped",
+    "mariadbArchive": "bundled file size and SHA-256 match the pinned source manifest and installer values",
+    "windowsPowerShellInstallTest": "not run; PowerShell is unavailable in this Linux environment",
+    "nativeWindowsStartupAndSqlSmokeTest": "not run in this environment",
+    "nativeWindowsInstallerAndPortableBuild": "not built; npm registry DNS unavailable and Electron package is not cached"
+  }
+}

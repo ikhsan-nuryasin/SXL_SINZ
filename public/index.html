@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta name="sxl-csrf" content="__SXL_CSRF_TOKEN__">
+<title>SINZ · Local Development Workspace</title>
+<meta name="theme-color" content="#f5f7fa">
+<link rel="icon" href="/sinz-mark.svg" type="image/svg+xml">
+<link href="/styles.css" rel="stylesheet"/>
+</head>
+<body><div class="app-shell"><aside aria-label="Navigasi utama" class="sidebar" id="sidebar">
+<div class="brand-lockup">
+<img alt="" class="brand-mark" src="/sinz-mark.svg" width="43" height="43">
+<div class="brand-copy"><strong>SINZ</strong><small>LOCAL DEVELOPMENT</small></div>
+</div>
+<div class="sidebar-caption">WORKSPACE</div>
+<nav aria-label="Navigasi utama" class="side-nav primary-nav">
+<button aria-current="page" class="nav-item active" data-nav="dashboard" type="button"><span class="nav-icon">D</span><span>Dashboard</span><kbd>Ctrl 1</kbd></button>
+<button class="nav-item" data-nav="projects" type="button"><span class="nav-icon">P</span><span>Proyek</span></button>
+<button class="nav-item" data-nav="downloads" type="button"><span class="nav-icon">DL</span><span>Download Center</span></button>
+<button class="nav-item" data-nav="database" type="button"><span class="nav-icon">DB</span><span>Database</span><span class="nav-dot" id="navDatabaseDot"></span></button>
+<button class="nav-item" data-nav="apps" type="button"><span class="nav-icon">APP</span><span>Aplikasi</span><span class="nav-count" id="navServiceCount">-</span></button>
+<button class="nav-item" data-nav="settings" type="button"><span class="nav-icon">SET</span><span>Pengaturan</span></button>
+</nav>
+<div class="sidebar-caption sidebar-tools-caption">TOOLS</div>
+<nav aria-label="Tools" class="side-nav"><button class="nav-item sql-launch-nav" id="launchSqlTerminal" type="button"><span class="nav-icon">SQL</span><span>Terminal SQL</span><span class="app-launch-arrow" aria-hidden="true">&gt;</span></button></nav>
+<nav aria-label="Bantuan" class="side-nav sidebar-help-nav"><button class="nav-item" data-nav="guide" type="button"><span class="nav-icon">?</span><span>Panduan</span></button></nav>
+<div class="sidebar-bottom">
+<div class="local-status"><span class="local-pulse"></span><div><strong>Lingkungan lokal</strong><small>Berjalan di perangkat ini</small></div></div>
+<div class="sidebar-foot"><img alt="" class="mini-mark" src="/sinz-mark.svg" width="22" height="22"><span>SINZ</span><span class="version-tag">v0.14.13</span></div>
+</div>
+</aside><div class="sidebar-backdrop" hidden="True" id="sidebarBackdrop"></div>
+<div class="main-area"><header class="appbar">
+<button aria-expanded="false" aria-label="Buka navigasi" class="mobile-menu" id="mobileNavToggle" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+<div class="page-identity"><div class="page-kicker" id="pageKicker">RUANG KERJA / IKHTISAR</div><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Ringkasan lingkungan pengembangan lokal kamu.</p></div>
+<div class="appbar-actions"><div class="local-pill"><span class="local-pulse"></span><span>LINGKUNGAN LOKAL</span></div><button aria-label="Buka pengaturan" class="appbar-help" data-nav="settings" type="button"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M9.6 9a2.5 2.5 0 1 1 4.2 1.8c-1.2 1-1.8 1.4-1.8 3M12 17.5h.01"></path></svg></button></div>
+</header><main class="content-area" id="mainContent"><section class="page-view active" data-page-view="dashboard" id="view-dashboard">
+<div class="welcome-card">
+<div class="welcome-copy"><div class="welcome-eyebrow"><span class="sparkle">✳</span> RUANG KERJA LOKAL</div><h2>Semua proyek,<br/><em>satu tempat.</em></h2><p>Jalankan database, lanjutkan coding, dan kelola proyek lokal tanpa berpindah-pindah alat.</p><div class="welcome-actions"><button class="btn welcome-primary" id="dashboardCreateProject" type="button">Buat proyek <span aria-hidden="true">+</span></button><button class="btn welcome-secondary" id="dashboardStartDatabase" type="button"><span class="dashboard-db-label">Memeriksa MariaDB…</span></button><button class="btn welcome-secondary" id="dashboardOpenSql" type="button">Buka SQL</button></div></div>
+<div aria-hidden="true" class="welcome-art"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="art-glow"></div><div class="art-window"><div class="art-window-top"><i></i><i></i><i></i><span>localhost</span></div><div class="art-code"><span class="code-purple">const</span> <span class="code-green">idea</span> = <span class="code-yellow">"reality"</span>;<br/><span class="code-purple">function</span> <span class="code-blue">build</span>() {<br/>  <span class="code-green">ship</span>(idea);<br/>}</div><div class="art-bottom"><span class="art-check">✓</span><span>Siap berkarya</span><span class="art-bars"><i></i><i></i><i></i><i></i><i></i></span></div></div><div class="floating-chip chip-top"><span>✦</span> Lingkungan developer</div><div class="floating-chip chip-bottom"><span class="local-pulse"></span> Semua berjalan lokal</div></div>
+</div>
+<div class="section-heading"><div><div class="section-eyebrow">RINGKASAN</div><h2>Ringkasan ruang kerja</h2><p>Pantau komponen penting tanpa berpindah menu.</p></div><span class="updated-label"><span class="local-pulse"></span> Status live</span></div>
+<div class="metric-grid">
+<article class="metric-card metric-sharing"><div class="metric-top"><span class="metric-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"></path></svg></span><span class="metric-overline">PUBLIKASI</span></div><strong class="metric-value" id="overviewSharingStatus">Tidak aktif</strong><span class="metric-caption">Berbagi website</span><button class="metric-link" data-nav="sharing" type="button">Kelola berbagi <span>→</span></button></article>
+<article class="metric-card metric-database"><div class="metric-top"><span class="metric-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><ellipse cx="12" cy="5" rx="8.5" ry="3"></ellipse><path d="M3.5 5v7c0 1.66 3.8 3 8.5 3s8.5-1.34 8.5-3V5M3.5 12v7c0 1.66 3.8 3 8.5 3s8.5-1.34 8.5-3v-7"></path></svg></span><span class="metric-overline">DATA</span></div><strong class="metric-value" id="overviewDatabaseStatus">Memeriksa…</strong><span class="metric-caption">MariaDB / MySQL</span><button class="metric-link" data-nav="database" type="button">Kelola basis data <span>→</span></button></article>
+<article class="metric-card metric-server"><div class="metric-top"><span class="metric-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><rect height="7" rx="2" width="18" x="3" y="3.5"></rect><rect height="7" rx="2" width="18" x="3" y="13.5"></rect><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"></path></svg></span><span class="metric-overline">LAYANAN</span></div><strong class="metric-value" id="overviewApacheStatus">Memeriksa…</strong><span class="metric-caption">Apache HTTP Server</span><button class="metric-link" data-nav="apps" type="button">Buka Aplikasi <span>→</span></button></article>
+<article class="metric-card metric-projects"><div class="metric-top"><span class="metric-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H10l2 2h6.5A2.5 2.5 0 0 1 21 9.5v8a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path></svg></span><span class="metric-overline">RUANG KERJA</span></div><strong class="metric-value" id="overviewProjectCount">—</strong><span class="metric-caption">Proyek terdaftar</span><button class="metric-link" data-nav="projects" type="button">Lihat proyek <span>→</span></button></article>
+</div>
+<div class="dashboard-lower">
+<section class="panel dashboard-panel"><div class="panel-heading"><div><span class="section-eyebrow">AKSES CEPAT</span><h3>Akses cepat</h3></div><span class="panel-heading-icon">✦</span></div><div class="quick-grid"><button class="quick-action" data-nav="projects" type="button"><span class="quick-icon quick-violet"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H10l2 2h6.5A2.5 2.5 0 0 1 21 9.5v8a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path></svg></span><span><strong>Pengelola Proyek</strong><small>Buat atau jalankan proyek</small></span><span class="quick-arrow">↗</span></button><button class="quick-action" data-nav="database" type="button"><span class="quick-icon quick-mint"><svg aria-hidden="true" viewbox="0 0 24 24"><ellipse cx="12" cy="5" rx="8.5" ry="3"></ellipse><path d="M3.5 5v7c0 1.66 3.8 3 8.5 3s8.5-1.34 8.5-3V5M3.5 12v7c0 1.66 3.8 3 8.5 3s8.5-1.34 8.5-3v-7"></path></svg></span><span><strong>Database</strong><small>Kelola data dan query SQL</small></span><span class="quick-arrow">↗</span></button><button class="quick-action" data-nav="apps" type="button"><span class="quick-icon quick-blue"><svg aria-hidden="true" viewbox="0 0 24 24"><rect height="7" rx="2" width="18" x="3" y="3.5"></rect><rect height="7" rx="2" width="18" x="3" y="13.5"></rect></svg></span><span><strong>Web &amp; Runtime</strong><small>Kontrol Apache, PHP, Composer</small></span><span class="quick-arrow">↗</span></button><button class="quick-action" data-nav="sharing" type="button"><span class="quick-icon quick-peach"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"></path></svg></span><span><strong>Berbagi Website</strong><small>Bagikan lewat URL HTTPS</small></span><span class="quick-arrow">↗</span></button></div></section>
+<section class="panel dashboard-panel getting-started"><div class="panel-heading"><div><span class="section-eyebrow">MULAI DI SINI</span><h3>Mulai di sini</h3></div><span class="panel-heading-icon">✧</span></div><p class="getting-copy">Baru pertama kali pakai SINZ? Ikuti urutan sederhana ini agar ruang kerja siap digunakan.</p><ol class="start-list"><li><span class="start-number">01</span><div><strong>Siapkan runtime</strong><small>Pasang Apache, PHP, dan database sesuai kebutuhan.</small></div><button aria-label="Buka runtime" data-nav="apps" type="button">→</button></li><li><span class="start-number">02</span><div><strong>Buat atau buka proyek</strong><small>Kelola file dan jalankan proyek dari satu tempat.</small></div><button aria-label="Buka proyek" data-nav="projects" type="button">→</button></li><li><span class="start-number">03</span><div><strong>Bagikan jika diperlukan</strong><small>Gunakan URL publik hanya untuk proyek tepercaya.</small></div><button aria-label="Buka sharing" data-nav="sharing" type="button">→</button></li></ol><button class="text-link" data-nav="guide" type="button">Baca panduan lengkap <span>→</span></button></section>
+</div>
+</section><section class="page-view" data-page-view="sharing" hidden="True" id="view-sharing"><div class="page-intro"><div><div class="section-eyebrow">PUBLIKASI / BERBAGI</div><h2>Berbagi Website</h2><p>Jalankan preview website lokal dan buat URL HTTPS untuk mengaksesnya dari jaringan lain.</p></div><span class="page-icon page-icon-peach"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4"></path></svg></span></div><div class="grid">
+<section class="panel">
+<h2>Bagikan website</h2>
+<p class="desc">Pilih folder dan mulai/akhiri sesi berbagi. Jenis runtime serta perlindungan akses diatur pada Pengaturan.</p>
+<p class="hint">Runtime dan proteksi akses sharing dikelola di Pengaturan. Pilih folder di bawah untuk memulai sesi.</p>
+<label class="field" for="folder">Folder website / proyek</label>
+<div class="inputrow"><input autocomplete="off" class="input" id="folder" placeholder="Contoh: C:\Users\Nama\Desktop\website-saya" spellcheck="false" type="text"/><button class="btn secondary" id="browse" type="button">Pilih Folder</button></div>
+<p class="hint">Mode PHP/Node menjalankan kode proyek yang dipilih. Jalankan hanya proyek yang kamu percaya; URL publik mengekspos aplikasi ke internet.</p>
+<div class="actions"><button class="btn" id="start" type="button">Mulai Berbagi</button><button class="btn danger" disabled="" id="stop" type="button">Hentikan Berbagi</button></div>
+<div class="error" hidden="" id="error" role="alert"></div>
+<div class="notice">⚠️ Quick Tunnel hanya untuk pengujian/pengembangan, bukan produksi. URL acak bersifat sementara dan berubah setiap sesi. Siapa pun yang memiliki URL dapat mengaksesnya kecuali autentikasi kata sandi atau allow-list email diaktifkan. Batas Cloudflare: 200 permintaan in-flight dan tidak mendukung Server-Sent Events (SSE). Jangan bagikan data pribadi, kredensial, file konfigurasi, atau halaman admin.</div>
+</section>
+<section class="panel">
+<h2>Status sharing</h2>
+<div class="status"><span class="dot" id="dot"></span><span id="statusText">Memeriksa status…</span></div>
+<label class="field">URL publik HTTPS</label>
+<div class="urlbox" id="publicUrl">Belum ada URL publik.</div>
+<button class="btn secondary copy" disabled="" id="copy" type="button">Salin URL</button>
+<div class="meta">
+<div><span>Preview lokal</span><span id="previewUrl">—</span></div>
+<div><span>Port preview</span><span id="port">—</span></div>
+<div><span>Mode runtime</span><span id="previewType">—</span></div>
+<div><span>Folder aktif</span><span id="root">—</span></div>
+<div><span>Mulai sejak</span><span id="started">—</span></div>
+</div>
+<details class="tunnel-log"><summary>Log Cloudflare Tunnel</summary><pre id="tunnelLog">Belum ada log.</pre></details>
+</section>
+</div></section><section class="page-view" data-page-view="database" hidden="True" id="view-database"><div class="page-intro"><div><div class="section-eyebrow">DATA / PENYIMPANAN</div><h2>Database</h2><p>Pilih engine yang dibutuhkan. Pengaturan, query, dan pemulihan dipisahkan agar lebih mudah ditemukan.</p></div><span class="page-icon page-icon-mint"><svg aria-hidden="true" viewbox="0 0 24 24"><ellipse cx="12" cy="5" rx="8.5" ry="3"></ellipse><path d="M3.5 5v7c0 1.66 3.8 3 8.5 3s8.5-1.34 8.5-3V5M3.5 12v7c0 1.66 3.8 3 8.5 3s8.5-1.34 8.5-3v-7"></path></svg></span></div>
+<div class="workspace-tabs" role="tablist" aria-label="Pilih kelompok database">
+  <button class="workspace-tab active" type="button" role="tab" aria-selected="true" data-db-engine-tab="mariadb">MariaDB</button>
+  <button class="workspace-tab" type="button" role="tab" aria-selected="false" data-db-engine-tab="other">PostgreSQL &amp; SQLite</button>
+</div>
+<section class="panel feature-panel" id="databasePanel" data-db-engine-panel="mariadb">
+<div class="db-top">
+<div><div class="eyebrow">Database Lokal</div><h2>Database Kompatibel MySQL · Pengelola MariaDB</h2><p class="desc" style="margin:0">MariaDB kompatibel dengan banyak aplikasi MySQL. Jalankan, buat database, query, backup, dan restore tanpa Laragon.</p></div>
+<div class="db-status"><span class="dot" id="dbDot"></span><span id="dbStatusText">Memeriksa MariaDB…</span></div>
+</div>
+<div class="database-quick-actions" aria-label="Aksi cepat MariaDB"><button class="btn" id="dbStartShortcut" type="button">Jalankan MariaDB</button><button class="btn danger" id="dbStopShortcut" type="button" disabled>Hentikan MariaDB</button><button class="btn secondary" id="dbSqlShortcut" type="button">Buka editor SQL</button></div>
+<div class="workspace-tabs workspace-tabs-compact" role="tablist" aria-label="Fitur MariaDB">
+  <button class="workspace-tab active" type="button" role="tab" aria-selected="true" data-db-subtab="runtime">Runtime &amp; Status</button>
+  <button class="workspace-tab" type="button" role="tab" aria-selected="false" data-db-subtab="data">Database &amp; Backup</button>
+  <button class="workspace-tab" type="button" role="tab" aria-selected="false" data-db-subtab="sql">SQL</button>
+</div>
+<div class="db-subpanel" data-db-subpanel="runtime">
+<div class="db-actions">
+<button class="btn" id="dbInstall" type="button">Pasang / Pulihkan MariaDB</button>
+<button class="btn secondary" id="dbVerifyVersion" type="button" hidden>Verifikasi Binary</button>
+<button class="btn secondary" disabled="" id="dbStart" type="button">Jalankan Database</button>
+<button class="btn danger" disabled="" id="dbStop" type="button">Hentikan Database</button>
+</div>
+
+</div>
+<div class="db-subpanel" data-db-subpanel="data" hidden>
+<div class="db-actions">
+<button class="btn secondary" disabled="" id="dbCredentials" type="button">Lihat Kredensial</button>
+<button class="btn secondary" disabled="" id="dbBackup" type="button">Cadangkan Database Pengguna</button>
+</div>
+<div class="db-actions">
+<label class="field" for="dbNewName" style="margin:0;align-self:center">Database baru</label>
+<input autocomplete="off" class="input" id="dbNewName" maxlength="64" placeholder="contoh: aplikasi_kampus" spellcheck="false" style="max-width:280px"/>
+<button class="btn secondary" disabled="" id="dbCreateDatabase" type="button">Buat Database</button>
+<button class="btn danger" disabled="" id="dbDropDatabase" type="button">Hapus Database Terpilih</button>
+</div>
+<div aria-live="polite" class="hint" id="dbCreateMessage" role="status"></div>
+<div class="db-actions">
+<label class="field" for="dbBackupList" style="margin:0;align-self:center">Cadangan tersimpan</label>
+<select class="input" id="dbBackupList" style="min-width:240px;flex:1"><option value="">Memuat daftar backup…</option></select>
+<button class="btn secondary" id="dbRefreshBackups" type="button">Muat Ulang Cadangan</button>
+<button class="btn danger" disabled="" id="dbRestore" type="button">Pulihkan Cadangan</button>
+</div>
+<div aria-live="polite" class="hint" id="dbBackupMessage" role="status"></div>
+<div class="meta" style="margin-top:10px">
+<div><span>Versi</span><span id="dbVersion">—</span></div>
+<div><span>Host database</span><span id="dbHost">127.0.0.1</span></div>
+<div><span>Port database</span><span id="dbPort">3307</span></div>
+<div><span>Folder data</span><span id="dbDataDir">runtime/mariadb/data</span></div>
+</div>
+<details class="db-log-panel" id="dbLogPanel" style="margin-top:12px">
+<summary>Log database aktif</summary>
+<div class="db-actions"><button class="btn secondary" id="dbRefreshLog" type="button">Muat Ulang Log</button></div>
+<pre class="db-log-content" id="dbLogContents">Log belum dimuat. Klik “Muat Ulang Log”.</pre>
+</details>
+<div class="db-info" id="dbCredentialsBox" style="display:none;margin-top:12px">
+<strong>Kredensial lokal</strong>
+<p>Gunakan host dan port ini pada konfigurasi website lokal. Port database tidak diekspos ke internet.</p>
+<p>Pengguna: <span class="credential-value" id="dbUsername">root</span></p>
+<p>Kata sandi: <span class="credential-value" id="dbPassword"></span></p>
+<p class="hint">Jangan bagikan kata sandi ini atau masukkan ke folder website publik.</p>
+</div>
+<div class="db-info" style="margin-top:12px">
+<strong>Akun database untuk aplikasi</strong>
+<p class="hint">Buat akun non-root yang hanya punya hak akses pada database yang dipilih. Kata sandi akan ditampilkan sekali; simpan di konfigurasi rahasia backend, jangan di kode publik.</p>
+<div class="inputrow">
+<label class="field" for="dbProjectUsername" style="margin:0;align-self:center">Nama pengguna</label>
+<input autocomplete="off" class="input" id="dbProjectUsername" maxlength="32" spellcheck="false" style="max-width:240px" value="sxl_app_user"/>
+<button class="btn secondary" disabled="" id="dbCreateProjectUser" type="button">Buat Akun Aplikasi</button>
+</div>
+<div aria-live="polite" class="hint" id="dbProjectUserMessage" role="status" style="margin-top:8px"></div>
+<div class="db-result-empty" hidden="" id="dbProjectUserCredentials"></div>
+<button class="btn secondary" hidden="" id="dbCopyProjectUser" type="button">Salin Kredensial Akun</button>
+</div>
+</div>
+<div class="db-subpanel" data-db-subpanel="sql" hidden>
+<div class="db-grid">
+<div>
+<label class="field" for="sqlLanguage">Bahasa sintaks</label>
+<select class="input" id="sqlLanguage">
+<option selected="" value="id">Bahasa Indonesia (diterjemahkan ke SQL)</option>
+<option value="native">SQL MariaDB standar</option>
+</select>
+<label class="field" for="dbContext">Database aktif (opsional)</label>
+<div class="inputrow"><select class="input" id="dbContext"><option value="">Tanpa database aktif</option></select><button class="btn secondary" disabled="" id="dbRefreshList" type="button">Segarkan Daftar</button></div>
+<p class="hint">Pilih database di sini agar setiap query memakai database tersebut. Perintah GUNAKAN juga dapat memilih database untuk query berikutnya.</p>
+<div class="db-table-tools"><label class="field" for="dbTableSelect">Jelajahi tabel</label><div class="inputrow"><button class="btn secondary" disabled="" id="dbShowTables" type="button">Tampilkan Tabel</button><select class="input" disabled="" id="dbTableSelect" aria-label="Pilih tabel"><option value="">Muat tabel dahulu…</option></select><button class="btn secondary" disabled="" id="dbDescribeTable" type="button">Lihat Struktur</button></div></div>
+<label class="field" for="sqlInput">Perintah SQL</label>
+<textarea class="sql-editor" id="sqlInput" spellcheck="false">TAMPILKAN DATABASE;</textarea>
+<div class="sql-actions">
+<button class="btn" disabled="" id="dbRunQuery" type="button">Jalankan SQL</button>
+<button class="btn secondary" disabled="" id="dbShowDatabases" type="button">Tampilkan Database</button>
+<button class="btn secondary" id="dbClearResult" type="button">Bersihkan Hasil</button>
+</div>
+<div class="db-error" hidden="" id="dbQueryError" role="alert"></div>
+<div class="hint" id="dbTranslated" style="margin-top:12px"></div>
+<div aria-live="polite" class="db-result" id="dbResults"><div class="db-result-empty">Hasil query akan tampil di sini.</div></div>
+</div>
+<aside>
+<div class="db-info">
+<strong>Contoh sintaks Indonesia</strong>
+<div class="mapping"><span>BUAT DATABASE nama;</span><span>CREATE DATABASE</span></div>
+<div class="mapping"><span>GUNAKAN nama;</span><span>USE</span></div>
+<div class="mapping"><span>BUAT TABEL ...</span><span>CREATE TABLE</span></div>
+<div class="mapping"><span>PILIH * DARI tabel;</span><span>SELECT ... FROM</span></div>
+<div class="mapping"><span>DIMANA id = 1</span><span>WHERE</span></div>
+<div class="mapping"><span>TAMBAHKAN KE tabel ...</span><span>INSERT INTO</span></div>
+<div class="mapping"><span>UBAH tabel SET ...</span><span>UPDATE</span></div>
+<div class="mapping"><span>HAPUS DARI tabel ...</span><span>DELETE FROM</span></div>
+<div class="mapping"><span>URUTKAN BERDASARKAN id</span><span>ORDER BY</span></div>
+<p style="margin-top:12px">Gunakan backtick untuk nama kolom/tabel yang bentrok dengan kata kunci, misalnya <code>`dari`</code>.</p>
+</div>
+<div class="db-warning">Keamanan: MariaDB hanya mendengarkan pada <code>127.0.0.1</code>. Jangan membuka port database ke internet. Tunnel SINZ hanya membagikan file website statis, tidak meneruskan koneksi database.</div>
+</aside>
+</div>
+</section>
+<section class="panel feature-panel" id="additionalDatabaseEngines" data-db-engine-panel="other" hidden>
+<div class="db-top"><div><div class="eyebrow">DATABASE TAMBAHAN</div><h2>Engine alternatif</h2><p class="desc" style="margin:0">PostgreSQL untuk server relasional, SQLite untuk database berbasis file. Konfigurasi dan data setiap engine tetap terpisah.</p></div><button class="btn secondary" id="extraDbRefresh" type="button">Segarkan Status</button></div>
+<div class="workspace-tabs workspace-tabs-compact" role="tablist" aria-label="Pilih engine tambahan">
+  <button class="workspace-tab active" type="button" role="tab" aria-selected="true" data-extra-engine-tab="postgresql">PostgreSQL</button>
+  <button class="workspace-tab" type="button" role="tab" aria-selected="false" data-extra-engine-tab="sqlite">SQLite</button>
+</div>
+<div class="extra-db-grid">
+<article class="service-card" data-extra-engine-panel="postgresql">
+<div class="service-card-head"><h3>PostgreSQL</h3><span class="status"><span class="dot" id="pgDot"></span><span id="pgStatusText">Belum diperiksa</span></span></div>
+<p class="hint" id="pgDetail">Pilih folder binary resmi PostgreSQL yang berisi postgres, initdb, pg_ctl, psql, dan pg_dump.</p>
+
+<div class="inputrow"><button class="btn secondary" id="pgInitialize" type="button" disabled>Inisialisasi Data SINZ</button></div>
+<div class="actions"><button class="btn" id="pgStart" type="button" disabled>Jalankan PostgreSQL</button><button class="btn danger" id="pgStop" type="button" disabled>Hentikan PostgreSQL</button><button class="btn secondary" id="pgCredentials" type="button" disabled>Lihat Kredensial</button><button class="btn secondary" id="pgBackup" type="button" disabled>Backup PostgreSQL</button></div>
+<div class="db-info" id="pgCredentialsBox" hidden><strong>Kredensial PostgreSQL</strong><p>Host: <code>127.0.0.1</code></p><p>Port: <span id="pgCredPort">5433</span></p><p>Pengguna: <span id="pgCredUsername">sxl_admin</span></p><p>Kata sandi: <span class="credential-value" id="pgCredPassword"></span></p><p class="hint">Password ditampilkan hanya saat diminta. Simpan di penyimpanan rahasia proyek.</p></div>
+<label class="field" for="pgNewDatabase">Buat database PostgreSQL</label><div class="inputrow"><input class="input" id="pgNewDatabase" value="aplikasi_demo" maxlength="63" spellcheck="false"/><button class="btn secondary" id="pgCreateDatabase" type="button" disabled>Buat Database</button></div><label class="field" for="pgDatabase">Database target query / backup</label><input class="input" id="pgDatabase" value="postgres" maxlength="63" spellcheck="false"/>
+<label class="field" for="pgSql">SQL PostgreSQL</label><textarea class="sql-editor" id="pgSql" spellcheck="false">SELECT version();</textarea><div class="sql-actions"><button class="btn" id="pgRunQuery" type="button" disabled>Jalankan SQL</button><button class="btn secondary" id="pgRefreshDatabases" type="button" disabled>Daftar Database</button><button class="btn secondary" id="pgRefreshLog" type="button">Muat Log</button></div>
+<pre class="engine-output" id="pgOutput" aria-live="polite">Hasil PostgreSQL akan tampil di sini.</pre><details class="db-log-panel"><summary>Log PostgreSQL</summary><pre class="db-log-content" id="pgLog">Log belum dimuat.</pre></details>
+</article>
+<article class="service-card" data-extra-engine-panel="sqlite" hidden>
+<div class="service-card-head"><h3>SQLite</h3><span class="status"><span class="dot" id="sqliteDot"></span><span id="sqliteStatusText">Belum diperiksa</span></span></div>
+<p class="hint" id="sqliteDetail">SQLite tidak memerlukan server. SINZ menggunakan CLI sqlite3 yang Anda pilih dan hanya mengelola file di direktori data khusus.</p>
+
+<label class="field" for="sqliteNewName">Nama database baru</label><div class="inputrow"><input class="input" id="sqliteNewName" maxlength="63" spellcheck="false" value="aplikasi_demo"/><button class="btn" id="sqliteCreate" type="button" disabled>Buat Database</button></div>
+<label class="field" for="sqliteDatabaseSelect">Database SQLite milik SINZ</label><div class="inputrow"><select class="input" id="sqliteDatabaseSelect"><option value="">Belum ada database</option></select><button class="btn secondary" id="sqliteBackup" type="button" disabled>Backup SQLite</button></div>
+<label class="field" for="sqliteSql">SQL SQLite</label><textarea class="sql-editor" id="sqliteSql" spellcheck="false">SELECT sqlite_version();</textarea><div class="sql-actions"><button class="btn" id="sqliteRunQuery" type="button" disabled>Jalankan SQL</button><button class="btn secondary" id="sqliteRefresh" type="button">Segarkan Daftar</button></div>
+<pre class="engine-output" id="sqliteOutput" aria-live="polite">Hasil SQLite akan tampil di sini.</pre>
+<p class="hint">SQLite adalah file database, bukan service terpisah. SINZ tidak menghapus file database atau backup secara otomatis.</p>
+</article>
+</div>
+<div class="db-warning">Keamanan: PostgreSQL hanya dimulai dengan listener <code>127.0.0.1</code>. SINZ tidak meneruskan port database ke Cloudflare Tunnel. PostgreSQL memakai cluster baru dan tidak meng-upgrade atau menggunakan folder data dari instance lain.</div>
+</section></section><section class="page-view" data-page-view="apps" hidden="True" id="view-apps"><div class="page-intro"><div><div class="section-eyebrow">APLIKASI / LAYANAN</div><h2>Aplikasi</h2><p>Kelola aplikasi lokal terdaftar dan operasikan layanan web yang dipasang di SINZ. Konfigurasi runtime ada di Pengaturan.</p></div><span class="page-icon page-icon-blue"><svg aria-hidden="true" viewbox="0 0 24 24"><rect height="7" rx="2" width="18" x="3" y="3.5"></rect><rect height="7" rx="2" width="18" x="3" y="13.5"></rect><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"></path></svg></span></div>
+<section class="panel feature-panel app-directory-panel" id="appDirectoryPanel"><div class="db-top"><div><div class="eyebrow">DIREKTORI APLIKASI</div><h2>Aplikasi lokal</h2><p class="desc">Daftarkan aplikasi yang sudah terpasang, lalu jalankan dari SINZ. Hanya daftarkan executable yang Anda percaya.</p></div><div class="app-directory-actions"><button class="btn" id="openAppAddDialog" type="button">Tambah aplikasi</button><button class="btn secondary" id="appDirectoryRefresh" type="button">Muat ulang</button></div></div><div class="app-launch-actions"><button class="nav-item app-launch-item" id="launchTerminalApp" type="button" title="Buka terminal sistem di folder WWW"><span class="nav-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="m7 9 3 3-3 3M13 15h4"></path></svg></span><span class="app-launch-copy"><strong>Terminal</strong><small>Buka aplikasi terpisah</small></span><span class="app-launch-arrow" aria-hidden="true">↗</span></button><button class="nav-item app-launch-item" id="launchPhpMyAdminWeb" type="button" title="Jalankan dan buka phpMyAdmin di browser"><span class="nav-icon"><svg aria-hidden="true" viewbox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M7 6.5h.01M10 6.5h.01M7 13h4M7 16h7"></path></svg></span><span class="app-launch-copy"><strong>phpMyAdmin</strong><small>Web di browser terpisah</small></span><span class="app-launch-arrow" aria-hidden="true">↗</span></button></div>
+<div class="app-directory-list" id="appDirectoryList" aria-live="polite"><div class="db-result-empty">Memuat direktori aplikasi...</div></div></section>
+<section class="panel official-tools-panel"><div class="panel-heading"><div><span class="section-eyebrow">TAUTAN RESMI</span><h3>Database &amp; coding tools</h3></div></div><div class="official-tools-grid"><a href="https://mariadb.org/" target="_blank" rel="noopener noreferrer">MariaDB <span>?</span></a><a href="https://www.postgresql.org/" target="_blank" rel="noopener noreferrer">PostgreSQL <span>?</span></a><a href="https://sqlite.org/" target="_blank" rel="noopener noreferrer">SQLite <span>?</span></a><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">Visual Studio Code <span>?</span></a><a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">Node.js <span>?</span></a><a href="https://www.php.net/" target="_blank" rel="noopener noreferrer">PHP <span>?</span></a><a href="https://getcomposer.org/" target="_blank" rel="noopener noreferrer">Composer <span>?</span></a><a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git <span>?</span></a></div></section>
+<div class="workspace-tabs" role="tablist" aria-label="Kategori web dan runtime">
+  <button class="workspace-tab active" type="button" role="tab" aria-selected="true" data-service-tab="services">Layanan</button>
+  <button class="workspace-tab" type="button" role="tab" aria-selected="false" data-service-tab="diagnostics">Diagnostik</button>
+</div>
+<section class="panel feature-panel service-tab-panel" id="diagnosticsPanel" data-service-panel="diagnostics" hidden><div class="db-top"><div><div class="eyebrow">DIAGNOSTIK</div><h2>Pemeriksaan lingkungan</h2><p class="desc" style="margin:0">Periksa path runtime, versi PHP, ekstensi, konfigurasi Apache, Composer, MariaDB, dan phpMyAdmin tanpa mengubah data.</p></div><button class="btn secondary" id="runDiagnostics" type="button">Jalankan Diagnostik</button></div><div class="diagnostics-summary" id="diagnosticsSummary" aria-live="polite">Belum ada pemeriksaan. Klik Jalankan Diagnostik.</div><div class="diagnostics-list" id="diagnosticsList"></div></section><section class="panel feature-panel service-tab-panel" id="environmentPanel" data-service-panel="services">
+<div class="db-top"><div><div class="eyebrow">Local stack</div><h2>Web Server &amp; Runtime</h2><p class="desc" style="margin:0">Atur server web dan runtime di sini. Terminal dibuka sebagai aplikasi sistem; phpMyAdmin berjalan sebagai web mandiri di browser.</p></div><div class="db-actions" style="margin:0"><button class="btn" id="startAllServices" type="button">Jalankan Semua Layanan</button><button class="btn danger" id="stopAllServices" type="button">Hentikan Semua Layanan</button><button class="btn secondary" id="servicesRefresh" type="button">Segarkan</button></div></div>
+
+<div class="service-grid" style="margin-top:16px">
+<article class="service-card">
+<div class="service-card-head"><h3>Apache HTTP Server</h3><span class="status"><span class="dot" id="apacheDot"></span><span id="apacheState">Belum diperiksa</span></span></div>
+<p class="hint" id="apacheDetail">Server web untuk project static serta PHP/Laravel melalui FastCGI dan virtual host `.localhost`.</p>
+<div class="actions"><button class="btn secondary" id="apacheInstall" type="button">Pasang Apache</button><button class="btn" disabled="" id="apacheStart" type="button">Jalankan Apache</button><button class="btn danger" disabled="" id="apacheStop" type="button">Hentikan Apache</button><button class="btn secondary" disabled="" id="apacheOpen" type="button">Buka Website</button></div>
+<div aria-live="polite" class="hint" id="apacheMessage" role="status"></div>
+</article>
+<article class="service-card">
+<div class="service-card-head"><h3>PHP Runtime</h3><span class="status"><span class="dot" id="phpDot"></span><span id="phpState">Belum diperiksa</span></span></div>
+<p class="hint" id="phpDetail">PHP dijalankan per proyek; phpMyAdmin memakai PHP 8.3 yang kompatibel.</p>
+<p class="hint">Target versi: <code id="phpVersion">—</code></p>
+<div class="actions"><button class="btn secondary" id="phpInstall" type="button">Pasang PHP 8.3</button></div>
+<div aria-live="polite" class="hint" id="phpMessage" role="status"></div>
+
+<p class="hint">PHP digunakan oleh proyek PHP/Laravel dan phpMyAdmin. Proyek PHP/Laravel dijalankan melalui Apache + PHP-CGI FastCGI dengan alamat <code>nama-proyek.localhost</code>. Pastikan Apache memiliki mod_proxy, mod_proxy_fcgi, dan mod_rewrite.</p>
+</article>
+<article class="service-card">
+<div class="service-card-head"><h3>Composer</h3><span class="status"><span class="dot" id="composerDot"></span><span id="composerState">Belum diperiksa</span></span></div>
+<p class="hint" id="composerDetail">Pengelola dependensi PHP untuk Laravel dan aplikasi PHP modern.</p>
+<div class="actions"><button class="btn secondary" id="composerInstall" type="button">Pasang Composer</button></div>
+<div aria-live="polite" class="hint" id="composerMessage" role="status"></div>
+</article>
+<article class="service-card">
+<div class="service-card-head"><h3>phpMyAdmin</h3><span class="status"><span class="dot" id="pmaDot"></span><span id="pmaState">Belum diperiksa</span></span></div>
+<p class="hint" id="pmaDetail">Aplikasi web mandiri yang dibuka di browser default. Gunakan untuk membuat database, mengelola tabel, dan impor/ekspor SQL.</p>
+<div class="actions"><button class="btn secondary" id="pmaInstall" type="button">Pasang phpMyAdmin</button><button class="btn" disabled="" id="pmaStart" type="button">Jalankan phpMyAdmin</button><button class="btn secondary" disabled="" id="pmaOpen" type="button">Buka phpMyAdmin</button><button class="btn danger" disabled="" id="pmaStop" type="button">Hentikan</button></div>
+<div aria-live="polite" class="hint" id="pmaMessage" role="status"></div>
+</article>
+</div>
+<div class="db-warning">Apache Windows memakai binary pihak ketiga Apache Lounge. SINZ mencocokkan SHA-256 arsip dengan manifest independen Microsoft winget-pkgs dan membatalkan pemasangan jika versi, URL, atau checksum tidak cocok. macOS memakai Homebrew. Proyek PHP/Laravel di workspace dijalankan melalui Apache + PHP-CGI FastCGI; Apache dan FastCGI hanya bind ke 127.0.0.1. phpMyAdmin tetap memakai server PHP lokal tersendiri dan autentikasi login MariaDB.</div>
+</section>
+
+</section><section class="page-view" data-page-view="settings" hidden="True" id="view-settings"><div class="page-intro"><div><div class="section-eyebrow">PREFERENSI / KONFIGURASI</div><h2>Pengaturan</h2><p>Pilih kelompok pengaturan agar konfigurasi panjang tetap mudah ditemukan.</p></div><span class="page-icon page-icon-blue" aria-hidden="true">?</span></div>
+<div class="workspace-tabs settings-tabs" role="tablist" aria-label="Kelompok pengaturan">
+<button class="workspace-tab active" id="settingsTabSharing" type="button" role="tab" aria-selected="true" aria-controls="sharingSettings" data-settings-tab="sharing">Berbagi &amp; keamanan</button>
+<button class="workspace-tab" id="settingsTabDatabase" type="button" role="tab" aria-selected="false" aria-controls="databaseRuntimeSettings" data-settings-tab="database">Database</button>
+<button class="workspace-tab" id="settingsTabRuntime" type="button" role="tab" aria-selected="false" aria-controls="runtimeSettings" data-settings-tab="runtime">Web &amp; runtime</button>
+</div>
+<section class="panel settings-section" id="sharingSettings" data-settings-category="sharing"><div class="panel-heading"><div><span class="section-eyebrow">AKSES PUBLIK</span><h3>Runtime &amp; proteksi berbagi website</h3></div></div><p class="hint">Pengaturan ini diterapkan saat sesi berbagi berikutnya dimulai.</p><label class="field" for="runtimeType">Jenis runtime</label>
+<select class="input" id="runtimeType">
+<option selected="" value="static">Statis (HTML/CSS/JS / hasil build)</option>
+<option value="php">PHP / Laravel / WordPress (PHP harus terpasang)</option>
+<option value="node">Node.js backend (Node.js + npm harus tersedia)</option>
+</select>
+<p class="hint" id="runtimeHint">Mode statis hanya membagikan file publik. Untuk React/Vue, pilih folder dist/build.</p>
+<p aria-live="polite" class="hint" id="runtimeAvailability" role="status">Memeriksa runtime...</p>
+<label class="field" for="sharePassword">Kata sandi akses SINZ (opsional)</label>
+<div class="inputrow"><input class="input" id="sharePassword" type="password" autocomplete="new-password" minlength="10" maxlength="128" placeholder="Minimal 10 karakter"/><button class="btn secondary" id="toggleSharePassword" type="button">Tampilkan</button></div>
+<p class="hint">Jika diisi, browser meminta username <code>sxl</code> dan kata sandi. Bagikan kata sandi melalui jalur terpisah dari URL.</p>
+<label class="field" for="shareAllowedEmails">Batasi pengunjung berdasarkan email Cloudflare (opsional)</label>
+<textarea class="input" id="shareAllowedEmails" rows="3" maxlength="6000" placeholder="contoh@domain.com&#10;rekan@domain.com&#10;*@perusahaan.com"></textarea>
+<p class="hint">Satu email per baris; dukung pola *@domain.com. Cloudflare meminta kode OTP melalui email. Bisa digabung dengan kata sandi SINZ. Memerlukan cloudflared 2026.10.4 atau lebih baru.</p>
+</section>
+<section class="panel settings-section" id="databaseRuntimeSettings" data-settings-category="database" hidden><div class="panel-heading"><div><span class="section-eyebrow">DATABASE</span><h3>Runtime dan port database</h3></div></div><div class="db-info" id="dbVersionManager" style="margin-top:12px">
+<strong>Versi runtime database</strong>
+<p class="hint">Pilih versi database yang sudah terpasang. MariaDB 13.0.2 adalah runtime tambahan Windows x64; pemasangan membuat data baru dan tidak mengimpor atau mengubah data versi lama.</p>
+<div class="db-actions">
+<label class="field" for="dbVersionSelect" style="margin:0;align-self:center">Versi aktif</label>
+<select class="input" id="dbVersionSelect" aria-label="Pilih versi database" style="min-width:240px;flex:1"><option value="mariadb-managed">Memuat versi…</option></select>
+<button class="btn secondary" id="dbUseVersion" type="button">Gunakan Versi</button>
+<button class="btn secondary" id="dbInstall13" type="button">Pasang MariaDB 13.0.2 dari ZIP</button>
+</div>
+<div class="db-actions">
+<label class="field" for="dbPortInput" style="margin:0;align-self:center">Port aktif</label>
+<input class="input" id="dbPortInput" type="number" min="1024" max="65535" step="1" value="3307" aria-label="Port database aktif" style="max-width:180px"/>
+<button class="btn secondary" id="dbSavePort" type="button">Simpan Port</button>
+</div>
+<div aria-live="polite" class="hint" id="dbVersionMessage" role="status">Runtime dan data setiap versi disimpan terpisah. Host tetap 127.0.0.1. Pemilihan versi/port tidak mengubah konfigurasi proyek atau phpMyAdmin yang sudah ada; perbarui port koneksi keduanya secara manual bila diperlukan.</div>
+</div><div class="engine-runtime-settings"><h4>Runtime PostgreSQL</h4><label class="field" for="pgBinDir">Folder binary PostgreSQL</label><div class="inputrow"><input class="input" id="pgBinDir" autocomplete="off" spellcheck="false" placeholder="C:\Program Files\PostgreSQL\17\bin"/><button class="btn secondary" id="pgConfigure" type="button">Simpan Runtime</button></div><div class="inputrow"><label class="field" for="pgPort" style="margin:0;align-self:center">Port loopback</label><input class="input" id="pgPort" type="number" min="1024" max="65535" value="5433" style="max-width:130px"/></div><h4>Runtime SQLite</h4><label class="field" for="sqliteExecutable">Path executable sqlite3</label><div class="inputrow"><input class="input" id="sqliteExecutable" autocomplete="off" spellcheck="false" placeholder="C:\tools\sqlite3.exe"/><button class="btn secondary" id="sqliteConfigure" type="button">Simpan CLI</button></div></div></section>
+<section class="panel settings-section" id="runtimeSettings" data-settings-category="runtime" hidden><div class="panel-heading"><div><span class="section-eyebrow">WEB &amp; RUNTIME</span><h3>Preferensi runtime</h3></div></div><article class="service-card desktop-startup-option" id="desktopStartupOption" hidden>
+  <div class="service-card-head"><h3>Startup Windows</h3><label class="desktop-startup-toggle" for="desktopStartupToggle"><input id="desktopStartupToggle" type="checkbox" disabled/><span>Jalankan SINZ saat saya masuk ke Windows</span></label></div>
+  <p class="hint">Opsional dan hanya berlaku untuk akun Windows ini. SINZ akan membuka jendela aplikasi; nonaktifkan pilihan ini bila tidak lagi diperlukan.</p>
+  <p aria-live="polite" class="hint" id="desktopStartupMessage" role="status">Memeriksa pengaturan startup…</p>
+</article><div class="php-version-manager" id="phpVersionManager">
+  <div class="php-version-manager-head"><div><h4>Versi PHP yang digunakan</h4><p>Pilih satu versi untuk PHP CLI, Composer, dan proyek baru. phpMyAdmin dapat memakai PHP kompatibel terpisah jika versi terpilih terlalu baru.</p></div><span class="status" id="phpVersionsCount">0 versi</span></div>
+  <label class="runtime-path-field" for="phpVersionSelect"><span>Versi PHP tersedia</span><select class="input" id="phpVersionSelect"><option value="">Memindai versi PHP…</option></select><small>PHP-CGI harus berasal dari folder versi yang sama agar proyek PHP/Laravel dapat berjalan melalui Apache FastCGI.</small></label>
+  <div class="php-version-root"><span>Folder koleksi</span><code id="phpVersionsRoot">Memuat lokasi folder…</code></div>
+  <div class="actions"><button class="btn" id="usePhpVersion" type="button" disabled>Gunakan Versi Ini</button><button class="btn secondary" id="scanPhpVersions" type="button">Pindai Versi</button><button class="btn secondary" id="openPhpVersionsFolder" type="button">Buka Folder PHP</button></div>
+  <p class="hint" aria-live="polite" id="phpVersionSelectMessage" role="status">Letakkan setiap folder distribusi PHP di folder koleksi, kemudian klik Pindai Versi.</p>
+</div><section class="panel manual-runtime-panel service-tab-panel" id="manualRuntimePanel" data-settings-panel="runtime-paths">
+  <div class="db-top"><div><div class="eyebrow">KONFIGURASI MANUAL</div><h2>Gunakan runtime yang sudah terpasang</h2><p class="desc" style="margin:0">Masukkan path lengkap dari PHP, Apache, Node.js, dan tool lain yang sudah ada. SINZ akan memvalidasi file/folder sebelum menyimpan. Ini bisa dipakai untuk runtime dari Laragon, XAMPP, Homebrew, atau instalasi mandiri.</p></div></div>
+  <div class="runtime-paths-grid">
+    <label class="runtime-path-field" for="manualApacheBinary"><span>Apache · httpd.exe / httpd</span><input class="input" id="manualApacheBinary" autocomplete="off" spellcheck="false" placeholder="C:\xampp\apache\bin\httpd.exe"/><small>File executable Apache; konfigurasi conf/httpd.conf harus berada di instalasinya.</small></label>
+    <label class="runtime-path-field" for="manualPhpBinary"><span>PHP CLI · php.exe / php</span><input class="input" id="manualPhpBinary" autocomplete="off" spellcheck="false" placeholder="C:\laragon\bin\php\php-8.3\php.exe"/><small>Dipakai untuk PHP, Composer, dan phpMyAdmin. PHP 8.3 disarankan.</small></label>
+    <label class="runtime-path-field" for="manualPhpCgiBinary"><span>PHP-CGI · php-cgi.exe / php-cgi</span><input class="input" id="manualPhpCgiBinary" autocomplete="off" spellcheck="false" placeholder="C:\laragon\bin\php\php-8.3\php-cgi.exe"/><small>Opsional jika ada di folder yang sama dengan php.exe. Versinya harus cocok.</small></label>
+    <label class="runtime-path-field" for="manualComposerPhar"><span>Composer · composer.phar</span><input class="input" id="manualComposerPhar" autocomplete="off" spellcheck="false" placeholder="C:\tools\composer.phar"/><small>Pilih file PHAR; SINZ menjalankannya menggunakan PHP yang terpilih.</small></label>
+    <label class="runtime-path-field" for="manualNodeBinary"><span>Node.js · node.exe / node</span><input class="input" id="manualNodeBinary" autocomplete="off" spellcheck="false" placeholder="C:\Program Files\nodejs\node.exe"/><small>Harus kompatibel dengan Node.js 22.12 atau yang lebih baru.</small></label>
+    <label class="runtime-path-field" for="manualNpmCli"><span>npm CLI · npm-cli.js</span><input class="input" id="manualNpmCli" autocomplete="off" spellcheck="false" placeholder="C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js"/><small>Opsional jika SINZ bisa menemukan npm-cli.js di dekat Node.js.</small></label>
+    <label class="runtime-path-field" for="manualPhpMyAdminDir"><span>Folder phpMyAdmin</span><input class="input" id="manualPhpMyAdminDir" autocomplete="off" spellcheck="false" placeholder="C:\tools\phpMyAdmin"/><small>Pilih folder ekstrak yang berisi index.php. SINZ dapat membuat config.inc.php jika belum ada; jika sudah ada, konfigurasi itu dipertahankan. Untuk database lokal, periksa host 127.0.0.1 dan port 3307.</small></label>
+    <label class="runtime-path-field" for="manualCloudflaredBinary"><span>Cloudflare Tunnel · cloudflared</span><input class="input" id="manualCloudflaredBinary" autocomplete="off" spellcheck="false" placeholder="C:\tools\cloudflared.exe"/><small>Opsional. Jika binary valid sudah tersedia, SINZ tidak perlu mengunduhnya lagi.</small></label>
+    <label class="runtime-path-field" for="manualMariaDbBinDir"><span>Folder bin MariaDB</span><input class="input" id="manualMariaDbBinDir" autocomplete="off" spellcheck="false" placeholder="C:\mariadb\bin"/><small>Untuk menyalin binary ke runtime SINZ dan membuat data terpisah. Memerlukan mariadbd, installer, client, dan dump.</small></label>
+  </div>
+  <div class="actions"><button class="btn" id="saveManualRuntimePaths" type="button">Simpan &amp; Validasi Path</button><button class="btn secondary" id="clearManualRuntimePaths" type="button">Kosongkan Semua Path</button><button class="btn secondary" id="refreshManualRuntimePaths" type="button">Muat Ulang</button></div>
+  <p aria-live="polite" class="hint" id="manualRuntimeMessage" role="status">Path manual belum dimuat.</p>
+  <details class="runtime-path-help"><summary>Bagaimana menemukan path runtime?</summary><div class="runtime-path-help-content"><h4>Windows · Laragon / XAMPP / instalasi sendiri</h4><p>Di PowerShell, jalankan <code>where.exe php</code>, <code>where.exe node</code>, atau <code>where.exe httpd</code> untuk melihat executable yang sudah masuk PATH. Jika tidak ditemukan, periksa folder instalasi, misalnya <code>C:\laragon\bin\php\</code>, <code>C:\xampp\apache\bin\</code>, atau <code>C:\Program Files\nodejs\</code>. Untuk Apache, pilih file <code>httpd.exe</code>, bukan folder <code>bin</code>.</p><h4>macOS · Homebrew</h4><p>Jalankan <code>which php</code>, <code>which node</code>, <code>brew --prefix httpd</code>, atau <code>brew --prefix mariadb</code>. Masukkan path binary yang dikembalikan untuk file runtime, atau folder <code>bin</code> untuk MariaDB.</p><h4>Penting</h4><p>Masukkan path lengkap tanpa tanda kutip. Untuk PHP, pilih <code>php.exe</code> dan <code>php-cgi.exe</code> dari versi yang sama. Untuk MariaDB, folder harus memiliki server, installer, client, admin, dan dump. Menyimpan path tidak menjalankan atau mengunduh runtime; SINZ menggunakannya saat layanan terkait dijalankan.</p></div></details>
+  <div class="notice">Catatan: SINZ tidak otomatis mengadopsi database lama dari Laragon/XAMPP. Untuk mencegah data lama berubah, binary MariaDB manual disalin ke runtime privat pada Windows. Pada macOS, binary yang dipilih digunakan dengan data directory privat. Database lama tidak otomatis dipindahkan. MySQL Server murni tidak selalu kompatibel dengan installer MariaDB.</div>
+</section></section>
+<section class="panel settings-section settings-service-shortcut" data-settings-category="runtime" hidden><h3>Operasi layanan</h3><p class="hint">Status, pemasangan, dan kontrol start/stop tersedia di halaman Aplikasi.</p><button class="btn secondary" data-nav="apps" type="button">Buka Aplikasi</button></section></section>
+<section class="page-view" data-page-view="projects" hidden="True" id="view-projects">
+<div class="page-intro"><div><div class="section-eyebrow">RUANG KERJA / PROYEK</div><h2>Pengelola Proyek</h2><p>Kelola proyek dari satu daftar ringkas. Buka tindakan proyek atau publikasi GitHub lewat pop-up.</p></div><span class="page-icon page-icon-violet" aria-hidden="true">P</span></div>
+<section class="panel feature-panel projects-panel" id="projectsPanel">
+<div class="projects-toolbar"><div><div class="eyebrow">WORKSPACE</div><div class="hint" id="workspacePath"></div></div><div class="projects-toolbar-actions"><button class="btn" id="projectCreate" type="button">Buat Proyek</button><button class="btn secondary" id="openWorkspace" type="button">Buka Folder</button><button class="btn secondary" id="openWorkspaceTerminal" type="button">Terminal Workspace</button><button class="btn secondary" id="projectRefresh" type="button">Muat Ulang</button></div></div>
+<div aria-live="polite" class="hint" id="projectMessage" role="status"></div>
+<div class="project-list" id="projectList"><div class="db-result-empty">Memuat daftar proyek&#8230;</div></div>
+</section></section>
+<section class="page-view" data-page-view="downloads" hidden="True" id="view-downloads">
+<div class="page-intro"><div><div class="section-eyebrow">TOOLS / RUNTIME</div><h2>Download Center</h2><p>Periksa software yang tersedia. SINZ hanya memasang paket yang dapat diverifikasi secara otomatis; lainnya mengarah ke sumber resmi.</p></div><span class="page-icon page-icon-violet" aria-hidden="true">DL</span></div>
+<section class="panel feature-panel download-center-panel">
+<div class="download-toolbar"><label class="download-search-label" for="downloadSearch">Cari software<input class="input" id="downloadSearch" type="search" placeholder="PHP, PostgreSQL, Git…"/></label><button class="btn secondary" id="downloadRefresh" type="button">Periksa ulang</button><button class="btn secondary" data-nav="download-history" type="button">Aktivitas unduhan</button></div>
+<div class="download-filters" role="group" aria-label="Filter kategori download">
+<button class="workspace-tab active" data-download-filter="all" type="button">Semua</button><button class="workspace-tab" data-download-filter="php" type="button">PHP</button><button class="workspace-tab" data-download-filter="database" type="button">Database</button><button class="workspace-tab" data-download-filter="frontend" type="button">Frontend</button><button class="workspace-tab" data-download-filter="tools" type="button">Developer Tools</button><button class="workspace-tab" data-download-filter="webserver" type="button">Web Server</button><button class="workspace-tab" data-download-filter="frameworks" type="button">Framework</button>
+</div>
+<p class="hint" id="downloadCatalogMessage" role="status" aria-live="polite">Memeriksa instalasi lokal…</p>
+<div class="download-card-grid" id="downloadCatalogList"><div class="db-result-empty">Memeriksa software lokal…</div></div>
+</section></section>
+<section class="page-view" data-page-view="download-history" hidden="True" id="view-download-history">
+<div class="page-intro"><div><div class="section-eyebrow">TOOLS / RIWAYAT</div><h2>Aktivitas Download Center</h2><p>Status pemasangan terbaru pada sesi ini. Pemasangan otomatis hanya tersedia untuk paket yang diverifikasi SINZ.</p></div><span class="page-icon page-icon-violet" aria-hidden="true">DL</span></div>
+<section class="panel feature-panel"><div class="download-toolbar"><button class="btn secondary" data-nav="downloads" type="button">Kembali ke katalog</button><button class="btn secondary" id="downloadHistoryClear" type="button">Bersihkan riwayat sesi</button></div><div class="download-history-list" id="downloadHistoryList"><div class="db-result-empty">Belum ada aktivitas pada sesi ini.</div></div></section>
+</section>
+<dialog class="feature-dialog" id="projectActionsDialog" aria-labelledby="projectActionsTitle">
+<section class="feature-dialog-card">
+<div class="feature-dialog-heading"><div><span class="section-eyebrow">TINDAKAN PROYEK</span><h2 id="projectActionsTitle">Kelola proyek</h2><p class="hint" id="projectActionsHint"></p></div><button class="dialog-close" id="closeProjectActions" type="button" aria-label="Tutup">&times;</button></div>
+<div id="projectActionContent"></div>
+</section></dialog>
+<dialog class="feature-dialog" id="projectCreateDialog" aria-labelledby="projectCreateTitle">
+<form class="feature-dialog-card" method="dialog" onsubmit="return false">
+<div class="feature-dialog-heading"><div><span class="section-eyebrow">WIZARD PROYEK · LANGKAH 1–3</span><h2 id="projectCreateTitle">Buat proyek baru</h2><p class="hint">Periksa jenis proyek, lokasi workspace, dan dependensi sebelum membuat.</p></div><button class="dialog-close" value="cancel" aria-label="Tutup" type="submit">&times;</button></div>
+<label class="field" for="projectName">Nama proyek</label><input autocomplete="off" class="input" id="projectName" maxlength="40" placeholder="misalnya toko-online" spellcheck="false" required/>
+<label class="field" for="projectType">Jenis proyek</label><select class="input" id="projectType"><option value="laravel">Laravel · direkomendasikan</option><option value="php">Plain PHP</option><option value="static">HTML / CSS / JavaScript</option><option value="node">Node.js</option></select>
+<label class="field" for="projectLocation">Lokasi proyek</label><input class="input" id="projectLocation" readonly aria-describedby="projectLocationHint" value="Memuat workspace…"/><small class="hint" id="projectLocationHint">Proyek dibuat di workspace SINZ. Folder yang sudah ada tidak pernah ditimpa.</small>
+<div class="project-folder-preview"><strong>Folder proyek</strong><code id="projectFolderPreview">Masukkan nama proyek</code></div>
+<label class="project-git-choice"><input id="projectInitializeGit" type="checkbox"/><span>Inisialisasi repository Git setelah proyek berhasil dibuat</span></label>
+<div class="project-dependency-check"><div class="project-dependency-heading"><strong>Pemeriksaan dependensi</strong><button class="btn secondary" id="projectCheckDependencies" type="button">Periksa dependensi</button></div><div class="project-dependency-list" id="projectDependencyList" aria-live="polite"><p class="hint">Pilih jenis proyek lalu periksa kebutuhan runtime.</p></div></div>
+<p class="hint" id="projectCreateMessage" role="status" aria-live="polite"></p>
+<div class="feature-dialog-actions"><button class="btn secondary" value="cancel" type="submit">Batal</button><button class="btn secondary" id="projectWizardDownloadCenter" type="button">Buka Download Center</button><button class="btn" id="projectCreateSubmit" type="button" disabled>Buat Proyek</button></div>
+</form></dialog>
+<dialog class="feature-dialog" id="downloadDetailsDialog" aria-labelledby="downloadDetailsTitle"><section class="feature-dialog-card"><div class="feature-dialog-heading"><div><span class="section-eyebrow">INFORMASI PAKET</span><h2 id="downloadDetailsTitle">Detail software</h2></div><button class="dialog-close" id="closeDownloadDetails" type="button" aria-label="Tutup">&times;</button></div><div class="download-details-content" id="downloadDetailsContent"></div></section></dialog>
+<dialog class="feature-dialog" id="projectPublishDialog" aria-labelledby="projectPublishTitle">
+<section class="feature-dialog-card project-publish-panel" id="projectPublishPanel">
+<div class="feature-dialog-heading"><div><span class="section-eyebrow">PUBLIKASI KODE</span><h2 id="projectPublishTitle">Terbitkan proyek ke GitHub</h2><p class="hint" id="publishProjectLabel">Ikuti langkah di bawah. File proyek tidak dikirim sebelum konfirmasi.</p></div><button class="dialog-close" id="closePublishDialog" type="button" aria-label="Tutup">&times;</button></div>
+<ol class="publish-steps"><li>Isi nama repository dan visibilitas.</li><li>Buat pratinjau, lalu periksa file yang dikirim dan dikecualikan.</li><li>Konfirmasi daftar file dan aturan <code>.gitignore</code>.</li><li>Terbitkan; proses membuat commit lalu mengirimnya ke GitHub.</li></ol>
+<select class="input" id="publishProject" aria-label="Proyek yang akan diterbitkan" required hidden><option value="">Pilih proyek</option></select>
+<label class="field" for="publishName">Nama repository GitHub</label><input class="input" id="publishName" maxlength="201" required autocomplete="off" spellcheck="false" pattern="[A-Za-z0-9][A-Za-z0-9._-]{0,99}(/[A-Za-z0-9][A-Za-z0-9._-]{0,99})?" placeholder="nama-repository atau pemilik/nama-repository" aria-describedby="publishNameHint"/><small class="hint" id="publishNameHint">Isi <code>nama-repository</code>, atau <code>pemilik/nama-repository</code> untuk akun/organisasi tertentu.</small>
+<label class="field" for="publishVisibility">Siapa yang dapat melihat repository?</label><select class="input" id="publishVisibility"><option value="private">Private — hanya Anda dan kolaborator yang diizinkan</option><option value="public">Public — dapat dilihat siapa saja</option></select><small class="hint">Private disarankan. Repository Public dapat disalin dan diunduh siapa saja.</small>
+<div class="publish-prerequisites"><strong>Yang perlu disiapkan</strong><ul><li>Git dan GitHub CLI (<code>gh</code>) sudah terpasang.</li><li>GitHub CLI sudah login: <code>gh auth login</code>.</li><li>Identitas commit Git sudah diatur: <code>git config --global user.name</code> dan <code>git config --global user.email</code>.</li></ul></div>
+<div class="publish-preview" id="publishPreviewPanel"><p class="hint" id="publishPreviewMessage" role="status" aria-live="polite">Langkah 2: buat pratinjau untuk memeriksa file sebelum perubahan dilakukan.</p><p class="hint" id="publishPreviewSummary"></p><h4>File yang akan dikirim</h4><ul id="publishPreviewFiles" class="publish-preview-files"></ul><div class="publish-gitignore" id="publishGitignoreInfo" hidden></div><h4 id="publishExcludedHeading" hidden>File/folder yang tidak akan dikirim</h4><ul id="publishExcludedFiles" class="publish-preview-files"></ul></div>
+<div class="feature-dialog-actions publish-actions"><button class="btn secondary" id="publishPreview" type="button">1. Buat pratinjau file</button><button class="btn" id="publishGithub" type="button" disabled>4. Terbitkan ke GitHub</button></div>
+<label class="confirm-files-label"><input id="publishConfirmFiles" type="checkbox" disabled/><span>Saya sudah memeriksa file, visibilitas repository, dan aturan <code>.gitignore</code>. Saya memastikan tidak ada rahasia atau data pribadi yang ikut dikirim.</span></label><p class="hint" id="publishGithubMessage" aria-live="polite" role="status"></p>
+</section></dialog>
+<dialog class="feature-dialog app-add-dialog" id="appAddDialog" aria-labelledby="appAddDialogTitle">
+<form class="feature-dialog-card app-add-form" id="appAddForm" novalidate>
+<div class="feature-dialog-heading"><div><span class="section-eyebrow">DIREKTORI APLIKASI</span><h2 id="appAddDialogTitle">Tambah aplikasi lokal</h2><p class="hint">Daftarkan executable yang sudah terpasang di perangkat ini.</p></div><button class="dialog-close" id="closeAppAddDialog" type="button" aria-label="Tutup">&times;</button></div>
+<label class="field" for="appName">Nama aplikasi</label><input class="input" id="appName" name="name" maxlength="80" required autocomplete="off" placeholder="Contoh: Visual Studio Code"/>
+<label class="field" for="appCategory">Kategori</label><select class="input" id="appCategory" name="category" required><option value="">Pilih kategori...</option><option value="coding">Coding</option><option value="database">Database</option><option value="terminal">Terminal</option><option value="other">Lainnya</option></select>
+<label class="field" for="appExecutable">Path executable</label><input class="input" id="appExecutable" name="executable" required autocomplete="off" spellcheck="false" placeholder="C:\Program Files\Tool\tool.exe"/>
+<label class="field" for="appArgs">Argumen (satu per baris, opsional)</label><textarea class="input" id="appArgs" name="args" rows="3" placeholder="--new-window&#10;--reuse-window"></textarea>
+<label class="field" for="appWorkingDirectory">Working directory</label><input class="input" id="appWorkingDirectory" name="workingDirectory" required autocomplete="off" spellcheck="false" placeholder="C:\Users\Anda\Projects"/>
+<p class="hint" id="appDirectoryMessage" role="status" aria-live="polite"></p><div class="feature-dialog-actions"><button class="btn secondary" id="cancelAppAddDialog" type="button">Batal</button><button class="btn" id="appAddSubmit" type="submit">Tambah aplikasi</button></div>
+</form></dialog>
+<section class="page-view" data-page-view="guide" hidden="True" id="view-guide"><div class="page-intro"><div><div class="section-eyebrow">BANTUAN / DOKUMENTASI</div><h2>Panduan SINZ</h2><p>Panduan singkat untuk memahami alur kerja dan menggunakan SINZ dengan aman.</p></div><span class="page-icon page-icon-peach"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M9.6 9a2.5 2.5 0 1 1 4.2 1.8c-1.2 1-1.8 1.4-1.8 3M12 17.5h.01"></path></svg></span></div><section class="panel feature-panel" style="">
+<h2>Cara kerja</h2>
+<ol class="steps">
+<li><strong>Jalankan aplikasi.</strong> Buka SINZ dari Desktop/Start Menu atau folder Applications. Jika menjalankan mode ZIP Windows, gunakan <code>Start-SXL-Website-Sharing.bat</code>. Cloudflare Tunnel disiapkan otomatis ketika diperlukan.</li>
+<li><strong>Pilih folder website.</strong> Folder harus berisi <code>index.html</code> dan file statis yang dibutuhkan. Untuk React/Vue, gunakan folder hasil build seperti <code>dist</code> atau <code>build</code>.</li>
+<li><strong>Mulai Berbagi.</strong> SINZ menjalankan preview di <code>127.0.0.1</code>, lalu meminta Quick Tunnel membuat URL publik.</li>
+<li><strong>Bagikan URL.</strong> Buka URL dari HP atau perangkat lain yang terhubung ke internet.</li>
+<li><strong>Hentikan Berbagi.</strong> Hentikan tunnel setelah selesai. URL Quick Tunnel tidak permanen.</li>
+</ol>
+<footer>Panel admin hanya mendengarkan di komputer ini (127.0.0.1). Tunnel hanya membuka website statis yang dipilih, bukan panel admin. URL publik dapat diakses dari perangkat lain melalui internet, tanpa harus berada pada Wi-Fi yang sama.</footer>
+</section></section></main></div></div><dialog class="confirm-dialog" id="confirmDialog" aria-labelledby="confirmTitle" aria-describedby="confirmMessage">
+  <form method="dialog" class="confirm-card">
+    <div class="confirm-symbol" aria-hidden="true">!</div>
+    <h2 id="confirmTitle">Konfirmasi tindakan</h2>
+    <p id="confirmMessage">Pastikan tindakan ini memang ingin dilakukan.</p>
+    <div class="confirm-actions">
+      <button class="btn secondary" id="confirmCancel" value="cancel" type="submit">Batalkan</button>
+      <button class="btn danger" id="confirmAccept" value="confirm" type="submit">Ya, lanjutkan</button>
+    </div>
+  </form>
+</dialog>
+<div class="global-toast" id="globalToast" role="status" aria-live="assertive" aria-atomic="true" hidden></div>
+<script defer="True" src="/app.js"></script></body>
+</html>
