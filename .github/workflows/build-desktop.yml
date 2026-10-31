@@ -39,6 +39,18 @@ jobs:
           path: .
       - run: npm ci --no-audit --no-fund
       - run: npm test
+      - name: Download and verify MariaDB Windows runtime
+        shell: pwsh
+        run: |
+          $packageDirectory = Join-Path $env:GITHUB_WORKSPACE 'runtime/packages'
+          New-Item -ItemType Directory -Path $packageDirectory -Force | Out-Null
+          $archive = Join-Path $packageDirectory 'mariadb-13.0.2-winx64.zip'
+          Invoke-WebRequest -Uri 'https://archive.mariadb.org/mariadb-13.0.2/winx64-packages/mariadb-13.0.2-winx64.zip' -OutFile $archive -TimeoutSec 300
+          $actualHash = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($actualHash -ne 'ba9cefd6674b3f2f7bc67334c05305dc7c919643d76836e10767e70db0b5fb74') {
+            Remove-Item -LiteralPath $archive -Force
+            throw 'Checksum MariaDB Windows tidak cocok dengan manifest rilis.'
+          }
       - run: npm run build:win
       - uses: actions/upload-artifact@v4
         with:
@@ -60,6 +72,8 @@ jobs:
           path: .
       - run: npm ci --no-audit --no-fund
       - run: npm test
+      - name: Prepare empty runtime packages directory
+        run: mkdir -p runtime/packages
       - run: npm run build:mac:universal
       - uses: actions/upload-artifact@v4
         with:

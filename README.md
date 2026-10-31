@@ -1,4 +1,4 @@
-# SINZ v0.14.13 — Local Development Workspace
+# SINZ v0.14.14 — Local Development Workspace
 
 SINZ adalah lingkungan pengembangan lokal untuk Windows dan macOS. Selain website sharing, SINZ mengelola MariaDB, PostgreSQL, SQLite, Apache, PHP 8.3, Composer, phpMyAdmin, proyek PHP/Laravel dan Node.js, editor SQL Bahasa Indonesia, backup database, serta Cloudflare Quick Tunnel. Laragon tidak diperlukan. Aplikasi desktop dibuat dengan Electron; data disimpan di `%APPDATA%\\SXL Localhost` pada Windows (atau direktori data pengguna setara di macOS) agar tidak hilang saat aplikasi diperbarui. Nama package, app ID, dan direktori data historis SXL dipertahankan untuk kompatibilitas meskipun branding aplikasi menjadi SINZ.
 
@@ -66,7 +66,7 @@ Dokumentasi build dan pemakaian ada di `PANDUAN-RUNTIME-MANUAL.md`; catatan rili
 
 ### Windows 10/11 64-bit
 
-1. Jalankan `SXL-Localhost-0.14.13-x64.exe` hasil build installer.
+1. Jalankan `SXL-Localhost-0.14.14-x64.exe` hasil build installer.
 2. Ikuti wizard. Instalasi default hanya untuk akun Windows yang sedang digunakan dan tidak meminta hak Administrator.
 3. Setelah selesai, installer membuka **SINZ** dan membuat shortcut di Start Menu serta Desktop. Opsi **Web & Runtime → Layanan → Startup Windows** dapat digunakan untuk mengaktifkan atau menonaktifkan aplikasi berjalan saat masuk Windows. Opsi ini tersedia di aplikasi hasil installer, bukan portable EXE.
 4. Pada pembukaan pertama di Windows x64, MariaDB 13.0.2 disiapkan otomatis dari arsip yang dibundel dan tidak memerlukan unduhan MariaDB terpisah. Setup berjalan di ruang data pengguna; permintaan Administrator tidak diperlukan. Internet masih dibutuhkan untuk dependensi build, Cloudflare Tunnel, dan runtime lain yang belum dibundel.

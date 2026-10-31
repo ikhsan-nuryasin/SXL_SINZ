@@ -1,5 +1,11 @@
 # Riwayat Perubahan SXL Localhost
 
+## SXL Localhost v0.14.14 — 2026-10-31
+
+- Memperbaiki kompatibilitas pengujian pada Windows dan macOS, termasuk penyimpanan kredensial database sesuai platform dan pemeriksaan lokasi runtime yang deterministik.
+- Memperbaiki workflow GitHub Actions agar menyiapkan folder runtime pada kedua platform dan mengunduh arsip MariaDB Windows hanya setelah checksum resminya diverifikasi.
+- Memperjelas publikasi GitHub proyek, pratinjau `.gitignore`, dan perlindungan file lokal/rahasia.
+
 ## Perubahan workspace saat ini
 - Menambahkan login phpMyAdmin root tanpa password dengan membatasi MariaDB dan phpMyAdmin ke loopback.
 - Memperbaiki izin ACL MariaDB pada Windows dan validasi startup native.

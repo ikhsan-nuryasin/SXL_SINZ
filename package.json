@@ -1,7 +1,7 @@
 {
   "name": "sxl-localhost-website-sharing",
   "productName": "SINZ",
-  "version": "0.14.13",
+  "version": "0.14.14",
   "private": true,
   "description": "Portable local developer workspace with MariaDB 13.0.2 first-run bootstrap and Windows-safe initializer staging.",
   "main": "electron/main.js",

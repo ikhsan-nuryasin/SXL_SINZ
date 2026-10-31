@@ -145,9 +145,11 @@ test('validates paths again at launch and surfaces registry parse and schema err
   assert.throws(() => catalog.list(), { code: 'ERR_APP_CATALOG_VALIDATION' });
 });
 
-test('surfaces registry write failures instead of silently dropping changes', t => {
+test('surfaces registry storage failures instead of silently dropping changes', t => {
   const { catalog, app, dataDir } = setup(t);
   fs.rmSync(dataDir, { recursive: true, force: true });
   fs.writeFileSync(dataDir, 'not a directory', 'utf8');
-  assert.throws(() => catalog.add(app), { code: 'ERR_APP_CATALOG_WRITE' });
+  assert.throws(() => catalog.add(app), error =>
+    ['ERR_APP_CATALOG_READ', 'ERR_APP_CATALOG_WRITE'].includes(error.code)
+  );
 });

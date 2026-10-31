@@ -17,7 +17,7 @@ test('desktop package defines Windows installer and macOS app installer targets'
   assert.equal(pkg.build.appId, 'com.youtsin.sxl-localhost', 'the stable application ID preserves upgrade compatibility');
   assert.equal(pkg.build.nsis.shortcutName, 'SINZ');
   assert.equal(pkg.build.nsis.uninstallDisplayName, 'SINZ');
-  assert.equal(pkg.version, '0.14.13');
+  assert.equal(pkg.version, '0.14.14');
   assert.equal(pkg.dependencies.undici, '7.30.1', 'the pinned Undici dependency provides explicit proxy support');
   assert.match(pkg.scripts['build:win'], /electron-builder.*--win/);
   assert.match(pkg.scripts['build:mac'], /electron-builder.*--mac/);
@@ -182,7 +182,9 @@ test('portable runtime installer explains metadata network failures with actiona
     }
     fs.rmSync(temp, { recursive: true, force: true });
   });
-  await assert.rejects(runtime.ensureNodeRuntime(temp), error => {
+  await assert.rejects(runtime.ensureNodeRuntime(temp, {
+    inspectSystemNodeRuntime: async () => ({ runtime: null, reason: 'Node.js sistem tidak ditemukan bersama npm-cli.js.' })
+  }), error => {
     assert.match(error.message, /Tidak dapat mengambil checksum resmi Node\.js/);
     assert.match(error.message, /ENOTFOUND/);
     assert.match(error.message, /Node\.js 22\.12 atau lebih baru/);
@@ -262,5 +264,7 @@ test('release workflow shares one generated dependency lockfile across native bu
   assert.match(workflow, /npm install --package-lock-only --ignore-scripts/);
   assert.equal((workflow.match(/npm ci --no-audit --no-fund/g) || []).length, 2);
   assert.match(workflow, /windows:[\s\S]*?needs: prepare-dependencies/);
+  assert.match(workflow, /Download and verify MariaDB Windows runtime[\s\S]*?mariadb-13\.0\.2-winx64\.zip[\s\S]*?ba9cefd6674b3f2f7bc67334c05305dc7c919643d76836e10767e70db0b5fb74/);
   assert.match(workflow, /macos:[\s\S]*?needs: prepare-dependencies/);
+  assert.match(workflow, /Prepare empty runtime packages directory[\s\S]*?mkdir -p runtime\/packages/);
 });

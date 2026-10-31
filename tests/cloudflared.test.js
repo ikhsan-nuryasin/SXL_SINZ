@@ -57,11 +57,12 @@ test('isolated Quick Tunnel home is unique and kept separate from the real user 
   const runtimeRoot = path.join(root, 'runtime');
   const first = cloudflared.createIsolatedTunnelHome(runtimeRoot);
   const second = cloudflared.createIsolatedTunnelHome(runtimeRoot);
+  const resolvedHome = fs.realpathSync(path.join(runtimeRoot, 'cloudflared-home'));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
   assert.notEqual(first, second);
   assert.equal(fs.existsSync(first), true);
   assert.equal(fs.existsSync(second), true);
-  assert.equal(first.startsWith(path.join(runtimeRoot, 'cloudflared-home')), true);
+  assert.equal(first.startsWith(`${resolvedHome}${path.sep}`), true);
 });
 
 test('macOS archive runtime reuses only a binary whose SHA matches its verified archive sidecar', t => {
