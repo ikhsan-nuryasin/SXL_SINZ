@@ -1,5 +1,9 @@
 # Riwayat Perubahan SXL Localhost
 
+## SXL Localhost v0.14.15 — 2026-10-31
+
+- Mencegah electron-builder mencoba menerbitkan artefak langsung dari job build; GitHub Actions mengunggah artefak hanya setelah build Windows dan macOS sama-sama berhasil.
+
 ## SXL Localhost v0.14.14 — 2026-10-31
 
 - Memperbaiki kompatibilitas pengujian pada Windows dan macOS, termasuk penyimpanan kredensial database sesuai platform dan pemeriksaan lokasi runtime yang deterministik.
